@@ -14,7 +14,7 @@
     <body>
         {% block header %}
             <header class="header">
-                <div class="header-logo"></div>
+                <a href="{{ path('app_home') }}" class="header-logo"></a>
                 <a href="{{ path('app_login') }}">
                     <img src="{{ asset('assets/icons/user.svg') }}" alt="profil" class="user-btn">
                 </a>
@@ -29,6 +29,9 @@
             {% endfor %}
         {% endfor %}
 
+        {% if app.user %}
+            <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
+        {% endif %}
         {% block body %}{% endblock %}
 
         {% block footer %}

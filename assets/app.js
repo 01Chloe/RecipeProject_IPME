@@ -10,5 +10,6 @@ import './styles/header.css';
 import './styles/footer.css';
 import './styles/fonts.css';
 import './styles/variables.css';
+import './styles/form.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

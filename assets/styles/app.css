@@ -18,37 +18,32 @@ body {
 }
 .title{
     font-family: "Ysabeau Office", serif;
+    text-align: center;
+    margin-block: 1rem;
 }
-.input-group{
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-.input{
-    padding:  0.5rem;
+.alert{
+    background-color: var(--color-secondary);
+    opacity: 0.8;
+    color: var(--color-light-400);
     border-radius: 4px;
-    border: 1px solid var(--color-dark-900);
-    background-color: transparent;
-    transition: background-color 0.3s ease-out;
-    &:focus-within{
-        background-color: #fff;
-    }
+    padding: 0.5rem 1rem;
 }
-.btn{
-    border: 1px solid var(--color-primary);
-    background-color: var(--color-primary);
+.link{
     color: var(--color-dark-900);
-    border-radius: 4px;
-    transition: background-color 0.3s ease-out, color 0.3s ease-out;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    font-size: 1rem;
-    &:hover{
-        background-color: transparent;
-        color: var(--color-primary);
-    }
 }
 .btn-logout{
+    color: var(--color-primary);
+    margin: 0.5rem 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-primary);
+    padding: 0.25rem;
     text-decoration: none;
+    width: fit-content;
+    font-size: 0.75rem;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    &:hover{
+        background-color: var(--color-primary);
+        color: var(--color-light-100);
+    }
 }
 

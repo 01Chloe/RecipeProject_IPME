@@ -4,18 +4,44 @@
 
 {% block body %}
     <main class="main">
-        <h1>Register</h1>
+        <h1 class="title">S'inscrire</h1>
 
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
-            {{ form_row(registrationForm.email) }}
-            {{ form_row(registrationForm.plainPassword, {
-                label: 'Password'
-            }) }}
-            {{ form_row(registrationForm.agreeTerms) }}
+        <div class="input-group">
+            {{ form_label(registrationForm.last_name) }}
+            {{ form_widget(registrationForm.last_name) }}
+            {{ form_errors(registrationForm.last_name) }}
+        </div>
+        <div class="input-group">
+            {{ form_label(registrationForm.first_name) }}
+            {{ form_widget(registrationForm.first_name) }}
+            {{ form_errors(registrationForm.first_name) }}
+        </div>
+        <div class="input-group">
+            {{ form_label(registrationForm.email) }}
+            {{ form_widget(registrationForm.email) }}
+            {{ form_errors(registrationForm.email) }}
+        </div>
+        <div class="input-group">
+            {{ form_label(registrationForm.plainPassword) }}
+            {{ form_widget(registrationForm.plainPassword) }}
+            {{ form_errors(registrationForm.plainPassword) }}
+{#            {{ form_row(registrationForm.plainPassword, {#}
+{#                label: 'Mot de passe'#}
+{#            }) }}#}
+        </div>
+        <div class="submit-group">
+            <label for="registration_form_agreeTerms" class="required">
+                <input type="checkbox" id="registration_form_agreeTerms" name="registration_form[agreeTerms]" required="required" class="checkbox" value="1">
+                Accepter
+            </label>
 
-            <button type="submit" class="btn">Register</button>
+            <button class="btn" type="submit">
+                S'inscrire
+            </button>
+        </div>
         {{ form_end(registrationForm) }}
     </main>
 {% endblock %}

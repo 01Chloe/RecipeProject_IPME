@@ -1,0 +1,39 @@
+.input-group{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-block: 1rem;
+}
+.input{
+    padding:  0.5rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-dark-900);
+    background-color: transparent;
+    transition: background-color 0.3s ease-out;
+    &:focus-within{
+        background-color: #fff;
+    }
+}
+.checkbox{
+    accent-color: var(--color-primary);
+}
+.submit-group{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: end;
+}
+.btn{
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-primary);
+    color: var(--color-light-100);
+    border-radius: 4px;
+    transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    cursor: pointer;
+    padding: 0.5rem;
+    font-size: 1rem;
+    &:hover{
+        background-color: transparent;
+        color: var(--color-primary);
+    }
+}
