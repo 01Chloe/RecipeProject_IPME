@@ -1,0 +1,37 @@
+/* Footer*/
+.footer{
+    background-color: var(--color-dark-900);
+    color: var(--color-light-400);
+    padding: 2rem 1rem 0.5rem;
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    text-align: center;
+}
+.footer-logo-container{
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    & .footer-logo{
+        background-color: var(--color-light-400);
+        border-radius: 50%;
+        width: var(--size-logo);
+        height: var(--size-logo);
+    }
+    & .footer-title{
+        font-weight: 100;
+        font-family: "Ysabeau Office", serif;
+    }
+}
+.footer-links-group{
+    margin-block: 1rem;
+    & .footer-links{
+        margin-top: 0.5rem;
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+    }
+}
+.footer-infos{
+    font-size: 0.75rem;
+}

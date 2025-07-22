@@ -1,0 +1,16 @@
+/* Header */
+.header{
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-logo{
+    background-color: var(--color-light-900);
+    border-radius: 50%;
+    width: var(--size-logo);
+    height: var(--size-logo);
+}
+.user-btn{
+    width: 1.5rem;
+}

@@ -1,0 +1,12 @@
+:root{
+    --color-light-100: #F1FEFB;
+    --color-light-400: #FFECD8;
+    --color-light-900: #B4E2DA;
+    --color-dark-100: #3B4A4F;
+    --color-dark-400: #1B2631;
+    --color-dark-900: #1A252F;
+    --color-primary: #FD9640;
+    --color-secondary: #E06539;
+
+    --size-logo: 34px;
+}

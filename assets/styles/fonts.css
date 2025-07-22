@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('/fonts/Quicksand-Ysabeau_Office/Quicksand/Quicksand-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Ysabeau Office';
+    src: url('/fonts/Quicksand-Ysabeau_Office/Ysabeau_Office/YsabeauOffice-VariableFont_wght.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
