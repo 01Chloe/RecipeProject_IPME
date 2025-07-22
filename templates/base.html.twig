@@ -29,10 +29,10 @@
             {% endfor %}
         {% endfor %}
 
+        {% block body %}{% endblock %}
         {% if app.user %}
             <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
         {% endif %}
-        {% block body %}{% endblock %}
 
         {% block footer %}
             <footer class="footer">

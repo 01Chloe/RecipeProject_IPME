@@ -14,12 +14,16 @@ body {
 /* Main */
 .main{
     flex-grow: 1;
-    padding: 1rem;
 }
 .title{
     font-family: "Ysabeau Office", serif;
     text-align: center;
     margin-block: 1rem;
+    &.title-main{
+        color: var(--color-light-100);
+        position: relative;
+        z-index: 3;
+    }
 }
 .alert{
     background-color: var(--color-secondary);
@@ -39,6 +43,7 @@ body {
     padding: 0.25rem;
     text-decoration: none;
     width: fit-content;
+    margin-left: auto;
     font-size: 0.75rem;
     transition: background-color 0.3s ease-out, color 0.3s ease-out;
     &:hover{

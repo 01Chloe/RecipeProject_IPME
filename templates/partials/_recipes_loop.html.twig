@@ -1,0 +1,32 @@
+{% for recipe in recipes %}
+    <div class="card">
+        <img src="{{ recipe.imagePath }}" alt="{{ recipe.title }}" class="recipe-img">
+        <div class="recipe-infos-group">
+            <div class="infos-group">
+                {% if(recipe.level is same as(1)) %}
+                    <img src="{{ asset('assets/icons/star.svg') }}" alt="{{ recipe.level }}/3" class="infos-img">
+                    <p>Facile</p>
+                    {% elseif(recipe.level is same as(2)) %}
+                        <div class="level-group">
+                            <img src="{{ asset('assets/icons/star.svg') }}" alt="{{ recipe.level }}/3" class="infos-img">
+                            <img src="{{ asset('assets/icons/star.svg') }}" alt="{{ recipe.level }}/3" class="infos-img">
+                        </div>
+                        <p>Moyen</p>
+                    {% elseif(recipe.level is same as(3)) %}
+                        <div class="level-group">
+                            <img src="{{ asset('assets/icons/star.svg') }}" alt="{{ recipe.level }}/3" class="infos-img">
+                            <img src="{{ asset('assets/icons/star.svg') }}" alt="{{ recipe.level }}/3" class="infos-img">
+                            <img src="{{ asset('assets/icons/star.svg') }}" alt="{{ recipe.level }}/3" class="infos-img">
+                        </div>
+                        <p>Difficile</p>
+                {% endif %}
+            </div>
+            <div class="infos-group">
+                <img src="{{ asset('assets/icons/clock.svg') }}" alt="durée" class="infos-img">
+                <p>{{ recipe.duration }}min</p>
+            </div>
+        </div>
+        <h3 class="recipe-title">{{ recipe.title }}</h3>
+        <p class="recipe-category">{{ recipe.category.label }}</p>
+    </div>
+{% endfor %}
