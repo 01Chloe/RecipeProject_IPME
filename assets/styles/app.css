@@ -51,6 +51,7 @@ body {
 }
 .main{
     flex-grow: 1;
+    padding: 1rem;
 }
 .footer{
     background-color: var(--color-dark-900);
