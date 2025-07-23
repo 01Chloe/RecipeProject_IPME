@@ -12,5 +12,8 @@
             'recipes': recipesAndCategories
         } %}
     </div>
+    <div class="navigation">
+        {{ knp_pagination_render(recipesAndCategories)}}
+    </div>
 </main>
 {% endblock %}

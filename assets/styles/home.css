@@ -73,3 +73,16 @@
     padding: 0.25rem 1rem;
     width: fit-content;
 }
+/* Pagination */
+.pagination{
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+.first a, .previous a, .page a, .current,  .next a, .last a{
+    color: var(--color-dark-900);
+    text-decoration: none;
+}
+.current{
+    border-bottom: 1px solid var(--color-dark-900);
+}
