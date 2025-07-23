@@ -12,5 +12,6 @@ import './styles/fonts.css';
 import './styles/variables.css';
 import './styles/form.css';
 import './styles/home.css';
+import './styles/recipe.css';
 
 console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

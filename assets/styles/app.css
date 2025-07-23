@@ -31,19 +31,19 @@ body {
     color: var(--color-light-400);
     border-radius: 4px;
     padding: 0.5rem 1rem;
+    margin: 1rem;
 }
 .link{
     color: var(--color-dark-900);
 }
 .btn-logout{
     color: var(--color-primary);
-    margin: 0.5rem 1rem;
+    margin: 0 1rem 1rem auto;
     border-radius: 4px;
     border: 1px solid var(--color-primary);
     padding: 0.25rem;
     text-decoration: none;
     width: fit-content;
-    margin-left: auto;
     font-size: 0.75rem;
     transition: background-color 0.3s ease-out, color 0.3s ease-out;
     &:hover{

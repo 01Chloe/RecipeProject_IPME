@@ -20,9 +20,10 @@
 }
 
 /* Recipe Card */
-.recipe-container{
+.recipes-container{
     margin: 2rem 1rem;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 2rem;
 }

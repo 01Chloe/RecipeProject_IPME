@@ -18,6 +18,7 @@ final class RecipeController extends AbstractController
 
         return $this->render('recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
+            'recipe' => $recipe
         ]);
     }
 }
