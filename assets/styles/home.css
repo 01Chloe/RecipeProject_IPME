@@ -27,22 +27,36 @@
 .card{
 
 }
-.recipe-img{
-    border-radius: 4px;
+.recipe-infos-group{
     width: 200px;
     height: 200px;
-    object-fit: cover;
-}
-.recipe-infos-group{
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background-image: var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
+    &::after{
+        content: '';
+        inset: 0;
+        position: absolute;
+        background-color: var(--color-dark-900);
+        opacity: 0.4;
+        border-radius: 8px;
+    }
 }
 .infos-group{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 3;
+    color: var(--color-light-100);
     & .infos-img{
         width: 24px;
     }
@@ -50,7 +64,9 @@
         display: flex;
     }
 }
-
+.recipe-title{
+    margin-block: 0.5rem;
+}
 .recipe-category{
     background-color: var(--color-light-900);
     border-radius: 24px;
