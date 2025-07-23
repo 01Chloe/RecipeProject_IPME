@@ -18,6 +18,8 @@
         opacity: 0.3;
     }
 }
+
+/* Recipe Card */
 .recipe-container{
     margin: 2rem 1rem;
     display: flex;
@@ -25,7 +27,7 @@
     gap: 2rem;
 }
 .card{
-
+    position: relative;
 }
 .recipe-infos-group{
     width: 200px;
@@ -66,6 +68,15 @@
 }
 .recipe-title{
     margin-block: 0.5rem;
+    display: block;
+    text-decoration: none;
+    color: var(--color-dark-900);
+    font-size: 1.5rem;
+    &::after{
+        content: '';
+        position: absolute;
+        inset: 0;
+    }
 }
 .recipe-category{
     background-color: var(--color-light-900);
@@ -73,6 +84,7 @@
     padding: 0.25rem 1rem;
     width: fit-content;
 }
+
 /* Pagination */
 .pagination{
     display: flex;
