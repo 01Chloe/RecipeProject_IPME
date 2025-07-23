@@ -38,6 +38,7 @@ final class CommentFactory extends PersistentProxyObjectFactory
             'recipe' => RecipeFactory::random(),
             'updatedAt' => self::faker()->dateTimeBetween('-1 year', 'now'),
             'user' => UserFactory::random(),
+            'status' => 300
         ];
     }
 

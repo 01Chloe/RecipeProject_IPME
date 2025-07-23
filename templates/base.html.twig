@@ -15,14 +15,15 @@
         {% block header %}
             <header class="header">
                 <a href="{{ path('app_home') }}" class="header-logo"></a>
-                <div class="header-user">
-                    {% if app.user %}
-                        <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
-                    {% endif %}
+                {% if app.user %}
+                    <a href="{{ path('app_profile') }}">
+                        <img src="{{ asset('assets/icons/user.svg') }}" alt="profil" class="user-btn">
+                    </a>
+                    {% else %}
                     <a href="{{ path('app_login') }}">
                         <img src="{{ asset('assets/icons/user.svg') }}" alt="profil" class="user-btn">
                     </a>
-                </div>
+                {% endif %}
             </header>
         {% endblock %}
 

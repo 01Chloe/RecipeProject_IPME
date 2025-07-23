@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<div class="main">
+    <h1 class="title">Profil</h1>
+    <h2>Ajouter une recette</h2>
+    {{ form_errors(addForm) }}
+
+    {{ form_start(addForm, {'attr': {'class': 'form'}}) }}
+    <div class="input-group">
+        {{ form_label(addForm.title) }}
+        {{ form_widget(addForm.title) }}
+        {{ form_errors(addForm.title) }}
+    </div>
+    <div class="input-group">
+        {{ form_label(addForm.level) }}
+        {{ form_widget(addForm.level) }}
+        {{ form_errors(addForm.level) }}
+    </div>
+    <div class="input-group">
+        {{ form_label(addForm.duration) }}
+        {{ form_widget(addForm.duration) }}
+        {{ form_errors(addForm.duration) }}
+    </div>
+    <div class="input-group">
+        {{ form_label(addForm.imagePath) }}
+        {{ form_widget(addForm.imagePath) }}
+        {{ form_errors(addForm.imagePath) }}
+    </div>
+    <div class="input-group">
+        {{ form_label(addForm.category) }}
+        {{ form_widget(addForm.category) }}
+        {{ form_errors(addForm.category) }}
+    </div>
+    {{ form_end(addForm) }}
+    <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
+</div>
+{% endblock %}

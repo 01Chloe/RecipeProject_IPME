@@ -34,6 +34,9 @@ class Comment
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
+    #[ORM\Column]
+    private ?int $status = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -107,6 +110,18 @@ class Comment
     public function setTitle(string $title): static
     {
         $this->title = $title;
+
+        return $this;
+    }
+
+    public function getStatus(): ?int
+    {
+        return $this->status;
+    }
+
+    public function setStatus(int $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }
