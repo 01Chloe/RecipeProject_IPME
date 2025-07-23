@@ -11,6 +11,12 @@
     width: var(--size-logo);
     height: var(--size-logo);
 }
+.header-user{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
 .user-btn{
     width: 1.5rem;
 }

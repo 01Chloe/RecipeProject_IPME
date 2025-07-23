@@ -42,9 +42,43 @@
     display: flex;
     justify-content: space-between;
 }
-.recipe-like-btn{
-
-}
 .recipe-like-icon{
+    width: 24px;
+}
+.recipe-modication-area{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+.recipe-modification-btn{
+    text-decoration: none;
+    display: inline-block;
+}
+.recipe-comments{
+    background-color: var(--color-light-900);
+    border-top: 1px solid var(--color-dark-900);
+    padding: 2rem 1em 3rem;
+}
+.commment{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.recipe-comments-title {
+    margin-bottom: 1rem;
+}
+.comment-title{
+    font-weight: 600;
+    margin-top: 1rem;
+}
+.comment-content{
+    margin-block: 0.5rem;
+}
+.comment-modification-area{
+    display: flex;
+    gap: 0.25rem;
+}
+.comment-icon{
     width: 24px;
 }
