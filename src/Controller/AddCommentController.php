@@ -29,7 +29,7 @@ final class AddCommentController extends AbstractController
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('success', 'Commentaire ajouté avec success !');
+            $this->addFlash('success', 'Ajout du commentaire en cours de validation');
             return $this->redirectToRoute('app_recipe', ['id'=>$id]);
         }
 

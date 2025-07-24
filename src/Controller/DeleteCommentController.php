@@ -22,7 +22,7 @@ final class DeleteCommentController extends AbstractController
         } else {
             $em->remove($comment);
             $em->flush();
-            $this->addFlash('success', 'Commentaire supprimé avec success !');
+            $this->addFlash('success', 'Suppression du commentaire en cours de validation');
             return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
         }
     }

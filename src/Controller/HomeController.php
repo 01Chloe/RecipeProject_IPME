@@ -15,7 +15,7 @@ final class HomeController extends AbstractController
     public function index(RecipeRepository $recipeRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $recipesAndCategories = $paginator->paginate(
-            $recipeRepository->findBy(['status' => 300]),
+            $recipeRepository->findBy(['status' => 300], ['createdAt' => "DESC"]),
             $request->query->getInt('page', 1),
             10
         );

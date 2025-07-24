@@ -36,10 +36,7 @@
             </div>
         </div>
         <div class="recipe-description">
-            {% for step in recipe.steps %}
-                <h2 class="step-title">{{ step.title }}</h2>
-                <p>{{ step.content }}</p>
-            {% endfor %}
+            <p>{{ recipe.directives }}</p>
         </div>
         <div class="recipe-like-group">
             {% set count = 0 %}
@@ -69,7 +66,8 @@
     </div>
     <div class="recipe-comments">
         <h3 class="recipe-comments-title">Commentaires</h3>
-        {% for comment in recipe.comments %}
+        {% set comments = get_comments(recipe) %}
+        {% for comment in comments %}
             <div class="commment">
                 <div class="comment-content-area">
                     <p class="comment-title">{{ comment.title }}</p>

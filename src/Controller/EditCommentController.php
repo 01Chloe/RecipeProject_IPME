@@ -26,7 +26,7 @@ final class EditCommentController extends AbstractController
             $em->persist($comment);
             $em->flush();
 
-            $this->addFlash('success', 'Commentaire modifié avec success !');
+            $this->addFlash('success', 'Modification du commentaire en cours de validation');
             return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
         }
         return $this->render('edit_comment/index.html.twig', [

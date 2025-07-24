@@ -26,7 +26,7 @@ final class ProfileController extends AbstractController
             $em->persist($recipe);
             $em->flush();
 
-            $this->addFlash('success', 'Recette ajoutée avec success !');
+            $this->addFlash('success', 'Ajout de la recette en cours de validation');
             return $this->redirectToRoute('app_profile');
         }
 

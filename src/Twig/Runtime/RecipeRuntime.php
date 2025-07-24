@@ -28,6 +28,6 @@ class RecipeRuntime implements RuntimeExtensionInterface
     public function getMyRecipes(): array
     {
         $user = $this->security->getUser();
-        return $this->recipeRepository->findBy(['user' => $user]);
+        return $this->recipeRepository->findBy(['user' => $user, 'status' => 300]);
     }
 }
