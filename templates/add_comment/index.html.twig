@@ -4,23 +4,9 @@
 
 {% block body %}
 <div class="main">
-    {{ form_errors(addCommentForm) }}
-
-    <h1 class="title">Ajouter un commentaire</h1>
-    {{ form_start(addCommentForm, {'attr': {'class': 'form'}}) }}
-        <div class="input-group">
-            {{ form_label(addCommentForm.title) }}
-            {{ form_widget(addCommentForm.title) }}
-            {{ form_errors(addCommentForm.title) }}
-        </div>
-    <div class="input-group">
-        {{ form_label(addCommentForm.comment) }}
-        {{ form_widget(addCommentForm.comment) }}
-        {{ form_errors(addCommentForm.comment) }}
-    </div>
-    <div class="submit-group">
-        <button type="submit" class="btn">Ajouter</button>
-    </div>
-    {{ form_end(addCommentForm) }}
+    {% include 'partials/_update_comment.html.twig' with {
+        'form': addCommentForm,
+        'title': 'Ajouter'
+    } %}
 </div>
 {% endblock %}

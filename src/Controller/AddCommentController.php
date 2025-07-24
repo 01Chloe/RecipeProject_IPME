@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class AddCommentController extends AbstractController
 {
-    #[Route('/add/comment/{id}', name: 'app_add_comment')]
+    #[Route('/add/comment/add/{id}', name: 'app_add_comment')]
     public function index(string $id, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
         $comment = new Comment();
