@@ -55,6 +55,12 @@ class AddRecipeForm extends AbstractType
                 'choice_label' => 'label',
                 'expanded' => true,
             ])
+            ->add('directives', null, [
+            'label' => 'Instruction',
+            'attr' => [
+                'class' => 'input'
+            ]
+        ])
         ;
     }
 

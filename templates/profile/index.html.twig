@@ -33,6 +33,11 @@
     {{ form_label(addForm.category) }}
     {{ form_widget(addForm.category) }}
     {{ form_errors(addForm.category) }}
+    <div class="input-group">
+        {{ form_label(addForm.directives) }}
+        {{ form_widget(addForm.directives) }}
+        {{ form_errors(addForm.directives) }}
+    </div>
     <div class="submit-group">
         <button class="btn" type="submit">
             Ajouter
