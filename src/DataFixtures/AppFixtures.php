@@ -33,8 +33,6 @@ class AppFixtures extends Fixture
 
         LikeFactory::createMany(137);
 
-        StepFactory::createMany(388);
-
         $manager->flush();
     }
 }

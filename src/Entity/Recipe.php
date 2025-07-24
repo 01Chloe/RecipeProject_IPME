@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\RecipeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RecipeRepository::class)]
@@ -49,11 +50,6 @@ class Recipe
     #[ORM\OneToMany(targetEntity: Like::class, mappedBy: 'recipe')]
     private Collection $likes;
 
-    /**
-     * @var Collection<int, Step>
-     */
-    #[ORM\OneToMany(targetEntity: Step::class, mappedBy: 'recipe')]
-    private Collection $steps;
 
     #[ORM\ManyToOne(inversedBy: 'recipes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -62,11 +58,20 @@ class Recipe
     #[ORM\Column]
     private ?int $status = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $directives = null;
+
+    /**
+     * @var Collection<int, RecipeIngredient>
+     */
+    #[ORM\OneToMany(targetEntity: RecipeIngredient::class, mappedBy: 'recipe')]
+    private Collection $recipeIngredients;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
         $this->likes = new ArrayCollection();
-        $this->steps = new ArrayCollection();
+        $this->recipeIngredients = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -218,35 +223,6 @@ class Recipe
         return $this;
     }
 
-    /**
-     * @return Collection<int, Step>
-     */
-    public function getSteps(): Collection
-    {
-        return $this->steps;
-    }
-
-    public function addStep(Step $step): static
-    {
-        if (!$this->steps->contains($step)) {
-            $this->steps->add($step);
-            $step->setRecipe($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStep(Step $step): static
-    {
-        if ($this->steps->removeElement($step)) {
-            // set the owning side to null (unless already changed)
-            if ($step->getRecipe() === $this) {
-                $step->setRecipe(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getCategory(): ?Category
     {
@@ -268,6 +244,48 @@ class Recipe
     public function setStatus(int $status): static
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getDirectives(): ?string
+    {
+        return $this->directives;
+    }
+
+    public function setDirectives(?string $directives): static
+    {
+        $this->directives = $directives;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RecipeIngredient>
+     */
+    public function getRecipeIngredients(): Collection
+    {
+        return $this->recipeIngredients;
+    }
+
+    public function addRecipeIngredient(RecipeIngredient $recipeIngredient): static
+    {
+        if (!$this->recipeIngredients->contains($recipeIngredient)) {
+            $this->recipeIngredients->add($recipeIngredient);
+            $recipeIngredient->setRecipe($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRecipeIngredient(RecipeIngredient $recipeIngredient): static
+    {
+        if ($this->recipeIngredients->removeElement($recipeIngredient)) {
+            // set the owning side to null (unless already changed)
+            if ($recipeIngredient->getRecipe() === $this) {
+                $recipeIngredient->setRecipe(null);
+            }
+        }
 
         return $this;
     }
