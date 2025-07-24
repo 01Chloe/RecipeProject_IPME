@@ -4,6 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Recipe;
 use App\Form\AddRecipeForm;
+use App\Form\RecipeFormFlow;
+use App\Services\RecipeServices;
+use Craue\FormFlowBundle\Form\FormFlow;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,26 +16,8 @@ use Symfony\Component\Routing\Attribute\Route;
 final class ProfileController extends AbstractController
 {
     #[Route('/profile', name: 'app_profile')]
-    public function index(Request $request, EntityManagerInterface $em): Response
+    public function index(RecipeServices $recipeServices, RecipeFormFlow $flow): Response
     {
-        $recipe = new Recipe();
-        $form = $this->createForm(AddRecipeForm::class, $recipe);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $recipe->setUser($this->getUser());
-            $recipe->setCreatedAt(new \DateTime());
-            $recipe->setStatus(200);
-            $em->persist($recipe);
-            $em->flush();
-
-            $this->addFlash('success', 'Ajout de la recette en cours de validation');
-            return $this->redirectToRoute('app_profile');
-        }
-
-        return $this->render('profile/index.html.twig', [
-            'controller_name' => 'ProfileController',
-            'addForm' => $form
-        ]);
+        return $this->render('profile/index.html.twig', $recipeServices->handleRecipeForm($flow, new Recipe(), $this->getUser()));
     }
 }

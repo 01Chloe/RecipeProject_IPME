@@ -40,7 +40,8 @@ final class RecipeFactory extends PersistentProxyObjectFactory
             'title' => self::faker()->word(),
             'updatedAt' => self::faker()->dateTimeBetween('-1 year', 'now'),
             'user' => UserFactory::random(),
-            'status' => 300
+            'status' => 300,
+            'directives' => self::faker()->paragraph(),
         ];
     }
 

@@ -6,44 +6,44 @@
 <div class="main">
     <h1 class="title">Profil</h1>
     <h2 class="title-profil">Ajouter une recette</h2>
-    {{ form_errors(addForm) }}
+    {{ form_errors(form) }}
 
-    {% form_theme addForm 'form/custom_category_theme.html.twig' %}
-    {{ form_start(addForm, {'attr': {'class': 'form'}}) }}
+    {% form_theme form 'form/custom_category_theme.html.twig' %}
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
     <div class="input-group">
-        {{ form_label(addForm.title) }}
-        {{ form_widget(addForm.title) }}
-        {{ form_errors(addForm.title) }}
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
     </div>
     <div class="input-group">
-        {{ form_label(addForm.level) }}
-        {{ form_widget(addForm.level) }}
-        {{ form_errors(addForm.level) }}
+        {{ form_label(form.level) }}
+        {{ form_widget(form.level) }}
+        {{ form_errors(form.level) }}
     </div>
     <div class="input-group">
-        {{ form_label(addForm.duration) }}
-        {{ form_widget(addForm.duration) }}
-        {{ form_errors(addForm.duration) }}
+        {{ form_label(form.duration) }}
+        {{ form_widget(form.duration) }}
+        {{ form_errors(form.duration) }}
     </div>
     <div class="input-group">
-        {{ form_label(addForm.imagePath) }}
-        {{ form_widget(addForm.imagePath) }}
-        {{ form_errors(addForm.imagePath) }}
+        {{ form_label(form.imagePath) }}
+        {{ form_widget(form.imagePath) }}
+        {{ form_errors(form.imagePath) }}
     </div>
-    {{ form_label(addForm.category) }}
-    {{ form_widget(addForm.category) }}
-    {{ form_errors(addForm.category) }}
+    {{ form_label(form.category) }}
+    {{ form_widget(form.category) }}
+    {{ form_errors(form.category) }}
     <div class="input-group">
-        {{ form_label(addForm.directives) }}
-        {{ form_widget(addForm.directives) }}
-        {{ form_errors(addForm.directives) }}
+        {{ form_label(form.directives) }}
+        {{ form_widget(form.directives, {'attr': {'rows': '20'}}) }}
+        {{ form_errors(form.directives) }}
     </div>
     <div class="submit-group">
         <button class="btn" type="submit">
             Ajouter
         </button>
     </div>
-    {{ form_end(addForm) }}
+    {{ form_end(form) }}
     <h2 class="title-profil">Mes recettes</h2>
     <div class="recipes-container">
         {% set myRecipes = get_my_recipes() %}
@@ -52,7 +52,7 @@
                 'recipes': myRecipes
             } %}
             {% else %}
-            <p>Pas encore de recettes</p>
+            <p>Pas encore de recette</p>
         {% endif %}
     </div>
     <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>

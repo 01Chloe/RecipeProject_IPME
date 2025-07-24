@@ -6,6 +6,7 @@ use App\Entity\Category;
 use App\Entity\Recipe;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -22,20 +23,16 @@ class AddRecipeForm extends AbstractType
                     'class' => 'input'
                 ]
             ])
-            ->add('level', null, [
+            ->add('level', ChoiceType::class, [
                 'label' => 'Difficulté',
                 'attr' => [
                     'class' => 'input'
                 ],
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Le niveau de difficulté doit être indiqué',
-                    ]),
-                    new Range([
-                        'notInRangeMessage' => 'Le chiffre doit être compris entre 1 et 3',
-                        'min' => 1,
-                        'max' => 3,
-                    ]),
+                'expanded' => true,
+                'choices' => [
+                    'recipe.level.1' => 1,
+                    'recipe.level.2' => 2,
+                    'recipe.level.3' => 3,
                 ],
             ])
             ->add('duration', null, [
@@ -68,6 +65,7 @@ class AddRecipeForm extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Recipe::class,
+            'translation_domain'=>'front'
         ]);
     }
 }

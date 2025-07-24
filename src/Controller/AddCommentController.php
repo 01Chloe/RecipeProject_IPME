@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Enum\CommentStatusEnum;
 use App\Form\AddCommentForm;
 use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,7 +26,7 @@ final class AddCommentController extends AbstractController
             $comment->setUser($this->getUser());
             $comment->setRecipe($recipe);
             $comment->setCreatedAt(new \DateTime());
-            $comment->setStatus(200);
+            $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_IN_VALIDATION);
             $em->persist($comment);
             $em->flush();
 
