@@ -4,12 +4,12 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Recipe;
-use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Range;
 
 class AddRecipeForm extends AbstractType
 {
@@ -26,7 +26,17 @@ class AddRecipeForm extends AbstractType
                 'label' => 'Difficulté',
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le niveau de difficulté doit être indiqué',
+                    ]),
+                    new Range([
+                        'notInRangeMessage' => 'Le chiffre doit être compris entre 1 et 3',
+                        'min' => 1,
+                        'max' => 3,
+                    ]),
+                ],
             ])
             ->add('duration', null, [
                 'label' => 'Durée',
@@ -44,12 +54,6 @@ class AddRecipeForm extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'label',
                 'expanded' => true,
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
-                'attr' => [
-                    'class' => 'btn',
-                ]
             ])
         ;
     }

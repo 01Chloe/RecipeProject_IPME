@@ -34,7 +34,6 @@ final class StepFactory extends PersistentProxyObjectFactory
         return [
             'content' => self::faker()->paragraph(),
             'createdAt' => self::faker()->dateTimeBetween('-5 year', '-1 year'),
-            'duration' => self::faker()->randomNumber(2, false),
             'recipe' => RecipeFactory::random(),
             'title' => self::faker()->word(),
             'updatedAt' => self::faker()->dateTimeBetween('-1 year', 'now'),

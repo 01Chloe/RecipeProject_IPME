@@ -1,5 +1,5 @@
 .form{
-    padding: 1rem;
+    padding: 0 1rem 1rem;
     margin-bottom: 2rem;
 }
 .input-group{
@@ -16,6 +16,16 @@
     transition: background-color 0.3s ease-out;
     &:focus-within{
         background-color: #fff;
+    }
+}
+.radio-group{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    margin-block: 0.25rem;
+    & input{
+        accent-color: var(--color-primary);
     }
 }
 .checkbox{

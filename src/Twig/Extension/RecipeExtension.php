@@ -23,6 +23,7 @@ class RecipeExtension extends AbstractExtension
     {
         return [
             new TwigFunction('has_like', [RecipeRuntime::class, 'hasLike']),
+            new TwigFunction('get_my_recipes', [RecipeRuntime::class, 'getMyRecipes']),
         ];
     }
 }

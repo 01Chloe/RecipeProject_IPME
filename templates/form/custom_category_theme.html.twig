@@ -1,0 +1,10 @@
+{% block _add_recipe_form_category_widget %}
+    <div id="{{ id }}">
+        {% for child in form %}
+            <div class="radio-group">
+                {{ form_widget(child) }}
+                {{ form_label(child) }}
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

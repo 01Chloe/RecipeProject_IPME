@@ -14,7 +14,8 @@ class RecipeRuntime implements RuntimeExtensionInterface
 
     public function __construct(
         private Security $security,
-        private LikeRepository $likeRepository
+        private LikeRepository $likeRepository,
+        private RecipeRepository $recipeRepository
     )
     {
     }
@@ -22,8 +23,11 @@ class RecipeRuntime implements RuntimeExtensionInterface
     public function hasLike(Recipe $recipe): Like|null
     {
         $user = $this->security->getUser();
-        $like = $this->likeRepository->findOneBy(['recipe' => $recipe, 'user' => $user]);
-
-        return $like;
+        return $this->likeRepository->findOneBy(['recipe' => $recipe, 'user' => $user]);
+    }
+    public function getMyRecipes(): array
+    {
+        $user = $this->security->getUser();
+        return $this->recipeRepository->findBy(['user' => $user]);
     }
 }

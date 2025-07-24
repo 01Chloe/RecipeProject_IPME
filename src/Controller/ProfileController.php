@@ -27,7 +27,7 @@ final class ProfileController extends AbstractController
             $em->flush();
 
             $this->addFlash('success', 'Recette ajoutée avec success !');
-            return $this->redirectToRoute('app_game');
+            return $this->redirectToRoute('app_profile');
         }
 
         return $this->render('profile/index.html.twig', [

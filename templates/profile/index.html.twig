@@ -5,9 +5,10 @@
 {% block body %}
 <div class="main">
     <h1 class="title">Profil</h1>
-    <h2>Ajouter une recette</h2>
+    <h2 class="title-profil">Ajouter une recette</h2>
     {{ form_errors(addForm) }}
 
+    {% form_theme addForm 'form/custom_category_theme.html.twig' %}
     {{ form_start(addForm, {'attr': {'class': 'form'}}) }}
     <div class="input-group">
         {{ form_label(addForm.title) }}
@@ -29,12 +30,26 @@
         {{ form_widget(addForm.imagePath) }}
         {{ form_errors(addForm.imagePath) }}
     </div>
-    <div class="input-group">
-        {{ form_label(addForm.category) }}
-        {{ form_widget(addForm.category) }}
-        {{ form_errors(addForm.category) }}
+    {{ form_label(addForm.category) }}
+    {{ form_widget(addForm.category) }}
+    {{ form_errors(addForm.category) }}
+    <div class="submit-group">
+        <button class="btn" type="submit">
+            Ajouter
+        </button>
     </div>
     {{ form_end(addForm) }}
+    <h2 class="title-profil">Mes recettes</h2>
+    <div class="recipes-container">
+        {% set myRecipes = get_my_recipes() %}
+        {% if myRecipes %}
+            {% include 'partials/_recipes_loop.html.twig' with {
+                'recipes': myRecipes
+            } %}
+            {% else %}
+            <p>Pas encore de recettes</p>
+        {% endif %}
+    </div>
     <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
 </div>
 {% endblock %}

@@ -25,7 +25,7 @@ final class CheckHasLikeController extends AbstractController
         $like->setCreatedAt(new \DateTime());
         $em->persist($like);
         $em->flush();
-        $this->addFlash('success', 'Recette ajouté aux favoris !');
+        $this->addFlash('success', 'Like ajouté !');
         return $this->redirectToRoute('app_recipe', ['id' => $id]);
     }
 
@@ -41,7 +41,7 @@ final class CheckHasLikeController extends AbstractController
         } else {
             $em->remove($like);
             $em->flush();
-            $this->addFlash('success', 'Recette supprimée des favoris !');
+            $this->addFlash('success', 'Like supprimer !');
             return $this->redirectToRoute('app_recipe', ['id' => $id]);
         }
     }
