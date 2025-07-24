@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class EditCommentController extends AbstractController
 {
-    #[Route('/edit/comment/edit/{recipeId}/{commentId}', name: 'app_edit_comment')]
+    #[Route('/edit/comment/{recipeId}/{commentId}', name: 'app_edit_comment')]
     public function index(string $recipeId, string $commentId, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository, CommentRepository $commentRepository): Response
     {
         $comment = $commentRepository->findOneBy(['id' => $commentId]);
