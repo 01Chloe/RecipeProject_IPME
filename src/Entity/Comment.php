@@ -20,7 +20,7 @@ class Comment
     #[ORM\Column]
     private ?\DateTime $createdAt = null;
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?\DateTime $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]

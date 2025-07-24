@@ -88,7 +88,7 @@
             </div>
         {% endfor %}
         {% if(app.user) %}
-            <a href="#" class="btn recipe-modification-btn">Ajouter un commentaire</a>
+            <a href="{{ path('app_add_comment', {'id': recipe.id}) }}" class="btn recipe-modification-btn">Ajouter un commentaire</a>
         {% endif %}
     </div>
 </div>
