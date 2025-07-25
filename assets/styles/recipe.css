@@ -75,9 +75,6 @@
     font-weight: 600;
     margin-top: 1rem;
 }
-.comment-content{
-    margin-block: 0.5rem;
-}
 .comment-modification-area{
     display: flex;
     gap: 0.5rem;

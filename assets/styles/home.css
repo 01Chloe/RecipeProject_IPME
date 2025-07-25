@@ -29,6 +29,10 @@
 }
 .card{
     position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .recipe-infos-group{
     width: 200px;
