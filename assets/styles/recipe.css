@@ -90,3 +90,24 @@
     height: 30px;
     margin-bottom: -30px;
 }
+
+@media (width > 768px) {
+    .recipe-container{
+        padding: 1rem 3rem;
+    }
+    .recipe-img{
+        width: 60%;
+        height: 228px;
+        border-radius: 4px;
+        display: block;
+        margin-inline: auto;
+    }
+    .recipe-comments{
+        padding: 2rem 3rem;
+    }
+}
+@media (width > 1044) {
+    .recipe-img{
+        width: 20%;
+    }
+}

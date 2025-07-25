@@ -1,3 +1,16 @@
-.dashboard-admin{
+.admin-comment{
+    border: 1px solid var(--color-dark-900);
+    margin-inline: 1rem;
     padding: 1rem;
+    border-radius: 4px;
+}
+.padding{
+    padding: 0 1rem 1rem;
+}
+@media (width > 768px) {
+    .comment-content-area.admin{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+    }
 }
