@@ -12,7 +12,6 @@ final class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
-//        $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_ERROR)
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
         ]);

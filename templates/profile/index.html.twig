@@ -2,48 +2,69 @@
 
 {% block title %}Profil{% endblock %}
 
+{% form_theme form 'form/custom_category_theme.html.twig' %}
+
 {% block body %}
 <div class="main">
     <h1 class="title">Profil</h1>
     <h2 class="title-profil">Ajouter une recette</h2>
-    {{ form_errors(form) }}
 
-    {% form_theme form 'form/custom_category_theme.html.twig' %}
+    <div class="flow-step-container">
+        {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
+    </div>
+
     {{ form_start(form, {'attr': {'class': 'form'}}) }}
-    <div class="input-group">
-        {{ form_label(form.title) }}
-        {{ form_widget(form.title) }}
-        {{ form_errors(form.title) }}
-    </div>
-    <div class="input-group">
-        {{ form_label(form.level) }}
-        {{ form_widget(form.level) }}
-        {{ form_errors(form.level) }}
-    </div>
-    <div class="input-group">
-        {{ form_label(form.duration) }}
-        {{ form_widget(form.duration) }}
-        {{ form_errors(form.duration) }}
-    </div>
-    <div class="input-group">
-        {{ form_label(form.imagePath) }}
-        {{ form_widget(form.imagePath) }}
-        {{ form_errors(form.imagePath) }}
-    </div>
-    {{ form_label(form.category) }}
-    {{ form_widget(form.category) }}
-    {{ form_errors(form.category) }}
-    <div class="input-group">
-        {{ form_label(form.directives) }}
-        {{ form_widget(form.directives, {'attr': {'rows': '20'}}) }}
-        {{ form_errors(form.directives) }}
-    </div>
-    <div class="submit-group">
-        <button class="btn" type="submit">
-            Ajouter
-        </button>
-    </div>
+        {{ form_errors(form) }}
+        {% if flow.getCurrentStepNumber() == 1 %}
+            <div class="input-group">
+                {{ form_label(form.title) }}
+                {{ form_widget(form.title) }}
+                {{ form_errors(form.title) }}
+            </div>
+            {{ form_label(form.level) }}
+            {{ form_widget(form.level) }}
+            {{ form_errors(form.level) }}
+            <div class="input-group">
+                {{ form_label(form.duration) }}
+                {{ form_widget(form.duration) }}
+                {{ form_errors(form.duration) }}
+            </div>
+            <div class="input-group">
+                {{ form_label(form.imagePath) }}
+                {{ form_widget(form.imagePath) }}
+                {{ form_errors(form.imagePath) }}
+            </div>
+            {{ form_label(form.category) }}
+            {{ form_widget(form.category) }}
+            {{ form_errors(form.category) }}
+        {% endif %}
+
+    {{ dump(flow.getCurrentStepNumber) }}
+
+        {% if flow.getCurrentStepNumber() == 2 %}
+            {{ form_row(form.recipeIngredients) }}
+        {% endif %}
+
+        {% if flow.getCurrentStepNumber() == 3 %}
+            <div class="input-group">
+                {{ form_label(form.directives) }}
+                {{ form_widget(form.directives) }}
+                {{ form_errors(form.directives) }}
+            </div>
+        {% endif %}
+
+        {{ form_rest(form) }}
+
+        <div class="submit-group">
+            {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                craue_formflow_instance: flow,
+                craue_formflow_button_label_next: 'Suivant',
+                craue_formflow_button_class_next: 'btn btn-primary',
+                craue_formflow_button_render_reset: false,
+            } %}
+        </div>
     {{ form_end(form) }}
+
     <h2 class="title-profil">Mes recettes</h2>
     <div class="recipes-container">
         {% set myRecipes = get_my_recipes() %}
@@ -56,5 +77,5 @@
         {% endif %}
     </div>
     <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
-</div>
+</>
 {% endblock %}

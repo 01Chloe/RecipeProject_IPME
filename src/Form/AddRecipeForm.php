@@ -9,8 +9,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
-use Symfony\Component\Validator\Constraints\Range;
 
 class AddRecipeForm extends AbstractType
 {
@@ -25,9 +23,6 @@ class AddRecipeForm extends AbstractType
             ])
             ->add('level', ChoiceType::class, [
                 'label' => 'Difficulté',
-                'attr' => [
-                    'class' => 'input'
-                ],
                 'expanded' => true,
                 'choices' => [
                     'recipe.level.1' => 1,
@@ -52,12 +47,6 @@ class AddRecipeForm extends AbstractType
                 'choice_label' => 'label',
                 'expanded' => true,
             ])
-            ->add('directives', null, [
-            'label' => 'Instruction',
-            'attr' => [
-                'class' => 'input'
-            ]
-        ])
         ;
     }
 
