@@ -5,6 +5,7 @@ namespace App\Controller\admin;
 use App\Enum\CommentStatusEnum;
 use App\Enum\RecipeStatusEnum;
 use App\Repository\CommentRepository;
+use App\Repository\RecipeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,14 +14,15 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'app_admin')]
-    public function index(CommentRepository $commentRepository): Response
+    public function index(CommentRepository $commentRepository, RecipeRepository $recipeRepository): Response
     {
+        $recipes = $recipeRepository->findBy(['status' => 200], ['createdAt' => 'DESC']);
         $comments = $commentRepository->findBy(['status' => 200], ['createdAt' => "DESC"]);
-        dump($comments);
 
         return $this->render('admin/index.html.twig', [
             'controller_name' => 'AdminController',
-            'comments' => $comments
+            'comments' => $comments,
+            'recipes' => $recipes
         ]);
     }
 
@@ -47,6 +49,32 @@ final class AdminController extends AbstractController
         $em->flush();
 
         $this->addFlash('success', 'Commentaire supprimé avec success !');
+        return $this->redirectToRoute('app_admin');
+    }
+
+    #[Route('/admin/recipe/add/{id}', name: 'app_admin_add_recipe')]
+    public function addRecipe(string $id, RecipeRepository $recipeRepository, EntityManagerInterface $em): Response
+    {
+        $recipe = $recipeRepository->findOneBy(['id' => $id]);
+
+        $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_VALIDATE);
+        $em->persist($recipe);
+        $em->flush();
+
+        $this->addFlash('success', 'Recette ajoutée avec success !');
+        return $this->redirectToRoute('app_admin');
+    }
+
+    #[Route('/admin/recipe/delete/{id}', name: 'app_admin_delete_recipe')]
+    public function deleteRecipe(string $id, RecipeRepository $recipeRepository, EntityManagerInterface $em): Response
+    {
+        $recipe = $recipeRepository->findOneBy(['id' => $id]);
+
+        $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_ERROR);
+        $em->persist($recipe);
+        $em->flush();
+
+        $this->addFlash('success', 'Recette suppimée avec success !');
         return $this->redirectToRoute('app_admin');
     }
 }
