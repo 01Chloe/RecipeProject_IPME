@@ -59,7 +59,7 @@
         </div>
         {% if(app.user) and recipe.user.id == app.user.id  %}
             <div class="recipe-modication-area">
-                <a href="#" class="btn recipe-modification-btn">Supprimer</a>
+                <a href="{{ path('app_delete_recipe', {'id': recipe.id}) }}" class="btn recipe-modification-btn">Supprimer</a>
                 <a href="#" class="btn recipe-modification-btn">Modifier</a>
             </div>
         {% endif %}

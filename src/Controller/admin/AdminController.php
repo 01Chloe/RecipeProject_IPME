@@ -48,7 +48,7 @@ final class AdminController extends AbstractController
         $em->persist($comment);
         $em->flush();
 
-        $this->addFlash('success', 'Commentaire supprimé avec success !');
+        $this->addFlash('success', 'Commentaire supprimé avec succès !');
         return $this->redirectToRoute('app_admin');
     }
 

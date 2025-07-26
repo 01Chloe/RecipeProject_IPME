@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Enum\CommentStatusEnum;
 use App\Repository\CommentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,12 +18,13 @@ final class DeleteCommentController extends AbstractController
 
         if (!$comment) {
             throw $this->createNotFoundException(
-                'No product found for id '.$commentId
+                'Commentaire introuvable à l\'id : '.$commentId
             );
         } else {
-            $em->remove($comment);
+            $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_ERROR);
+            $em->persist($comment);
             $em->flush();
-            $this->addFlash('success', 'Suppression du commentaire en cours de validation');
+            $this->addFlash('success', 'Commentaire supprimé avec succès !');
             return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
         }
     }
