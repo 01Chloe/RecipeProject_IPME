@@ -31,26 +31,26 @@ readonly class RecipeServices
      * @throws RuntimeError
      * @throws LoaderError
      */
-    public function handleRecipeForm(
-        RecipeFormFlow $recipeFormFlow,
+    public function handleRecipeFormAction(
+        RecipeFormFlow $flow,
         Recipe $recipe,
         User $user
     ): Response {
-        $recipeFormFlow->bind($recipe);
-        $form = $recipeFormFlow->createForm();
+        $flow->bind($recipe);
+        $form = $flow->createForm();
 
-        if ($recipeFormFlow->isValid($form)) {
-            $recipeFormFlow->saveCurrentStepData($form);
+        if ($flow->isValid($form)) {
+            $flow->saveCurrentStepData($form);
 
-            if($recipeFormFlow->nextStep()) {
-                $form = $recipeFormFlow->createForm();
+            if($flow->nextStep()) {
+                $form = $flow->createForm();
             } else {
                 $recipe->setUser($user);
                 $recipe->setCreatedAt(new \DateTime());
                 $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_IN_VALIDATION);
                 $this->em->persist($recipe);
                 $this->em->flush();
-                $recipeFormFlow->reset();
+                $flow->reset();
 
                 return new RedirectResponse(
                     $this->generator->generate('app_profile')
@@ -58,11 +58,11 @@ readonly class RecipeServices
             }
         }
 
-        dump($recipeFormFlow->getCurrentStep());
+        dump($flow->getCurrentStep());
 
         return new Response(
             $this->twig->render('profile/index.html.twig', [
-                'flow' => $recipeFormFlow,
+                'flow' => $flow,
                 'form' => $form->createView(),
             ])
         );

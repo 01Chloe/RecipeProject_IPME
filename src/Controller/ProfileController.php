@@ -22,6 +22,6 @@ final class ProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function index(RecipeServices $recipeServices, RecipeFormFlow $flow): Response
     {
-        return $recipeServices->handleRecipeForm($flow, new Recipe(), $this->getUser());
+        return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $this->getUser());
     }
 }

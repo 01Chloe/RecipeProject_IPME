@@ -39,8 +39,6 @@
             {{ form_errors(form.category) }}
         {% endif %}
 
-    {{ dump(flow.getCurrentStepNumber) }}
-
         {% if flow.getCurrentStepNumber() == 2 %}
             {{ form_row(form.recipeIngredients) }}
         {% endif %}
