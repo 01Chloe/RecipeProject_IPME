@@ -1,12 +1,9 @@
 function initCollectionForm() {
     const buttonsAddForm = document.querySelectorAll('[data-btn-selector]');
-    console.log(buttonsAddForm)
     buttonsAddForm.forEach((btnElt) => {
-        console.log(btnElt)
         btnElt.addEventListener('click', () => {
 
             const dataValueSelector = btnElt.getAttribute('data-btn-selector');
-            console.log(dataValueSelector)
             let list = document.querySelector('[data-list-selector="'+dataValueSelector+'"]');
             let counter = list.children.length;
             let newWidget = list.getAttribute('data-prototype');
@@ -66,14 +63,18 @@ function mainDivForm() {
 }
 
 function createIcon(counter) {
-    const icon= document.createElement('i');
+    const icon= document.createElement('img');
     icon.setAttribute('data-delete-form', counter.toString());
-    icon.classList.add('fa');
-    icon.classList.add('fa-trash');
-    icon.classList.add('icon-click');
-    icon.classList.add('me-3');
-    icon.classList.add('mt-1');
-    icon.classList.add('fa-2x');
+    icon.src = "./assets/icons/xmark.svg";
+    icon.alt = "Supprimer";
+    icon.classList.add('icon');
+    icon.style.cursor = 'pointer';
+    // icon.classList.add('fa');
+    // icon.classList.add('fa-trash');
+    // icon.classList.add('icon-click');
+    // icon.classList.add('me-3');
+    // icon.classList.add('mt-1');
+    // icon.classList.add('fa-2x');
     return icon;
 }
 

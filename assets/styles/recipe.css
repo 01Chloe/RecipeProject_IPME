@@ -42,9 +42,6 @@
     display: flex;
     justify-content: space-between;
 }
-.recipe-like-icon{
-    width: 24px;
-}
 .recipe-modication-area{
     display: flex;
     justify-content: space-between;
@@ -78,9 +75,6 @@
 .comment-modification-area{
     display: flex;
     gap: 0.5rem;
-}
-.comment-icon{
-    width: 24px;
 }
 .comment-end{
     background-color: var(--color-light-900);

@@ -29,6 +29,9 @@ class RecipeIngredientType extends AbstractType
                     return $er->createQueryBuilder('i')
                         ->orderBy('i.name', 'ASC');
                 },
+                'attr' => [
+                    'class' => 'test',
+                ],
                 'choice_label' => 'name',
             ])
             ->add('quantity', TextType::class, [

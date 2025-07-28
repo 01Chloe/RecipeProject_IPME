@@ -36,6 +36,9 @@ body {
 .link{
     color: var(--color-dark-900);
 }
+.icon{
+    width: 24px;
+}
 .btn-logout{
     color: var(--color-primary);
     border-radius: 4px;
