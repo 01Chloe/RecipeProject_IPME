@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Comment;
+use App\Entity\User;
 use App\Enum\CommentStatusEnum;
 use App\Form\AddCommentForm;
 use App\Repository\RecipeRepository;
@@ -17,14 +18,16 @@ final class AddCommentController extends AbstractController
     #[Route('/add/comment/{id}', name: 'app_add_comment')]
     public function index(string $id, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
-        if($this->getUser()){
+        /** @var User $user */
+        $user = $this->getUser();
+        if($user){
             $comment = new Comment();
             $recipe = $recipeRepository->findOneBy(['id' => $id]);
             $form = $this->createForm(AddCommentForm::class, $comment);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
-                $comment->setUser($this->getUser());
+                $comment->setUser($user);
                 $comment->setRecipe($recipe);
                 $comment->setCreatedAt(new \DateTime());
                 $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_IN_VALIDATION);

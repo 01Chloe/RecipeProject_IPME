@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Recipe;
+use App\Entity\User;
 use App\Form\RecipeFormFlow;
 use App\Services\RecipeServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,8 +23,10 @@ final class ProfileController extends AbstractController
     #[Route('/profile', name: 'app_profile')]
     public function index(RecipeServices $recipeServices, RecipeFormFlow $flow): Response
     {
-        if($this->getUser()) {
-            return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $this->getUser());
+        /** @var User $user */
+        $user = $this->getUser();
+        if($user) {
+            return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user);
         } else {
             return  $this->redirectToRoute('app_login');
         }

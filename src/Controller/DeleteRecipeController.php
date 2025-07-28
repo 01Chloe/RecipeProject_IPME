@@ -14,13 +14,14 @@ final class DeleteRecipeController extends AbstractController
     #[Route('/delete/recipe/{id}', name: 'app_delete_recipe')]
     public function index(string $id, RecipeRepository $recipeRepository, EntityManagerInterface $em): Response
     {
+        $user = $this->getUser();
         $recipe = $recipeRepository->findOneBy(["id" => $id]);
 
         if(!$recipe) {
             throw $this->createNotFoundException(
                 'Recette introuvable à l\'id : '. $id
             );
-        } elseif ($this->getUser() && $recipe->getUser() === $this->getUser()) {
+        } elseif ($user && $recipe->getUser() === $user) {
             $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_DELETE);
             $em->persist($recipe);
             $em->flush();

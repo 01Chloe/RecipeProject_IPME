@@ -16,13 +16,14 @@ final class EditCommentController extends AbstractController
     #[Route('/edit/comment/{recipeId}/{commentId}', name: 'app_edit_comment')]
     public function index(string $recipeId, string $commentId, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository, CommentRepository $commentRepository): Response
     {
+        $user = $this->getUser();
         $comment = $commentRepository->findOneBy(['id' => $commentId]);
         if(!$comment) {
             throw $this->createNotFoundException(
                 'Commentaire introuvable à l\'id : '. $commentId
             );
         }
-        if($this->getUser() && $comment->getUser() === $this->getUser()) {
+        if($user && $comment->getUser() === $user) {
             $form = $this->createForm(AddCommentForm::class, $comment);
             $form->handleRequest($request);
 
