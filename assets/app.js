@@ -1,4 +1,4 @@
-import './bootstrap.js';
+import './message.js';
 /*
  * Welcome to your app's main JavaScript file!
  *
@@ -16,4 +16,3 @@ import './styles/recipe.css';
 import './styles/profil.css';
 import './styles/admin.css';
 
-console.log('This log comes from assets/app.js - welcome to AssetMapper! 🎉');

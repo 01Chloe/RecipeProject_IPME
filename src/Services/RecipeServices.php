@@ -48,6 +48,9 @@ readonly class RecipeServices
                 $recipe->setUser($user);
                 $recipe->setCreatedAt(new \DateTime());
                 $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_IN_VALIDATION);
+                foreach ($recipe->getRecipeIngredients() as $recipeIngredient){
+                    $recipeIngredient->setRecipe($recipe);
+                }
                 $this->em->persist($recipe);
                 $this->em->flush();
                 $flow->reset();
@@ -57,8 +60,6 @@ readonly class RecipeServices
                 );
             }
         }
-
-        dump($flow->getCurrentStep());
 
         return new Response(
             $this->twig->render('profile/index.html.twig', [
