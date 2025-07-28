@@ -1,4 +1,5 @@
 import './message.js';
+import './hideAlert.js';
 /*
  * Welcome to your app's main JavaScript file!
  *

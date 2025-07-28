@@ -24,8 +24,5 @@ final class EditRecipeController extends AbstractController
         } else {
             return  $this->redirectToRoute('app_login');
         }
-//        return $this->render('edit_recipe/index.html.twig', [
-//            'controller_name' => 'EditRecipeController',
-//        ]);
     }
 }
