@@ -6,5 +6,5 @@ enum CommentStatusEnum
 {
     const COMMENT_STATUS_IN_VALIDATION = 200;
     const COMMENT_STATUS_VALIDATE = 300;
-    const COMMENT_STATUS_ERROR = 400;
+    const COMMENT_STATUS_DELETE = 400;
 }

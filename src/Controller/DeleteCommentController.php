@@ -15,17 +15,18 @@ final class DeleteCommentController extends AbstractController
     public function index(string $recipeId, string $commentId, EntityManagerInterface $em, CommentRepository $commentRepository): Response
     {
         $comment = $commentRepository->findOneBy(['id' => $commentId]);
-
         if (!$comment) {
             throw $this->createNotFoundException(
-                'Commentaire introuvable à l\'id : '.$commentId
+                'Commentaire introuvable à l\'id : ' . $commentId
             );
-        } else {
-            $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_ERROR);
+        } elseif($this->getUser() && $comment->getUser() === $this->getUser()) {
+            $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_DELETE);
             $em->persist($comment);
             $em->flush();
             $this->addFlash('success', 'Commentaire supprimé avec succès !');
-            return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
+            return $this->redirectToRoute('app_recipe', ['id' => $recipeId]);
+        } else {
+            return $this->redirectToRoute('app_login');
         }
     }
 }

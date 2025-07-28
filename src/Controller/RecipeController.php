@@ -14,6 +14,12 @@ final class RecipeController extends AbstractController
     {
         $recipe = $recipeRepository->findOneBy(["id" => $id]);
 
+        if(!$recipe) {
+            throw $this->createNotFoundException(
+                'Recette introuvable à l\'id : '. $id
+            );
+        }
+
         return $this->render('recipe/index.html.twig', [
             'controller_name' => 'RecipeController',
             'recipe' => $recipe

@@ -17,26 +17,30 @@ final class AddCommentController extends AbstractController
     #[Route('/add/comment/{id}', name: 'app_add_comment')]
     public function index(string $id, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
-        $comment = new Comment();
-        $recipe = $recipeRepository->findOneBy(['id' => $id]);
-        $form = $this->createForm(AddCommentForm::class, $comment);
-        $form->handleRequest($request);
+        if($this->getUser()){
+            $comment = new Comment();
+            $recipe = $recipeRepository->findOneBy(['id' => $id]);
+            $form = $this->createForm(AddCommentForm::class, $comment);
+            $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this->getUser());
-            $comment->setRecipe($recipe);
-            $comment->setCreatedAt(new \DateTime());
-            $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_IN_VALIDATION);
-            $em->persist($comment);
-            $em->flush();
+            if ($form->isSubmitted() && $form->isValid()) {
+                $comment->setUser($this->getUser());
+                $comment->setRecipe($recipe);
+                $comment->setCreatedAt(new \DateTime());
+                $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_IN_VALIDATION);
+                $em->persist($comment);
+                $em->flush();
 
-            $this->addFlash('success', 'Ajout du commentaire en cours de validation');
-            return $this->redirectToRoute('app_recipe', ['id'=>$id]);
+                $this->addFlash('success', 'Ajout du commentaire en cours de validation');
+                return $this->redirectToRoute('app_recipe', ['id'=>$id]);
+            }
+
+            return $this->render('add_comment/index.html.twig', [
+                'controller_name' => 'AddCommentController',
+                'addCommentForm' => $form
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
         }
-
-        return $this->render('add_comment/index.html.twig', [
-            'controller_name' => 'AddCommentController',
-            'addCommentForm' => $form
-        ]);
     }
 }

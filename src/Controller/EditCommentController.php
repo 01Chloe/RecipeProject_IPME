@@ -17,21 +17,30 @@ final class EditCommentController extends AbstractController
     public function index(string $recipeId, string $commentId, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository, CommentRepository $commentRepository): Response
     {
         $comment = $commentRepository->findOneBy(['id' => $commentId]);
-        $form = $this->createForm(AddCommentForm::class, $comment);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUpdatedAt(new \DateTime());
-            $comment->setStatus(200);
-            $em->persist($comment);
-            $em->flush();
-
-            $this->addFlash('success', 'Modification du commentaire en cours de validation');
-            return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
+        if(!$comment) {
+            throw $this->createNotFoundException(
+                'Commentaire introuvable à l\'id : '. $commentId
+            );
         }
-        return $this->render('edit_comment/index.html.twig', [
-            'controller_name' => 'EditCommentController',
-            'editCommentForm' => $form
-        ]);
+        if($this->getUser() && $comment->getUser() === $this->getUser()) {
+            $form = $this->createForm(AddCommentForm::class, $comment);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $comment->setUpdatedAt(new \DateTime());
+                $comment->setStatus(200);
+                $em->persist($comment);
+                $em->flush();
+
+                $this->addFlash('success', 'Modification du commentaire en cours de validation');
+                return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
+            }
+            return $this->render('edit_comment/index.html.twig', [
+                'controller_name' => 'EditCommentController',
+                'editCommentForm' => $form
+            ]);
+        } else {
+            return $this->redirectToRoute('app_login');
+        }
     }
 }

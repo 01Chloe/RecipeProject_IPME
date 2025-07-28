@@ -17,10 +17,14 @@ final class CheckHasLikeController extends AbstractController
     public function add(int $id, EntityManagerInterface $em, RecipeRepository $recipeRepository): Response
     {
         $recipe = $recipeRepository->findOneBy(['id' => $id]);
+        if(!$recipe) {
+            throw $this->createNotFoundException(
+                'Recette introuvable à l\'id : '. $id
+            );
+        }
         $like = new Like();
 
         $like->setRecipe($recipe);
-        dump($id);
         $like->setUser($this->getUser());
         $like->setCreatedAt(new \DateTime());
         $em->persist($like);

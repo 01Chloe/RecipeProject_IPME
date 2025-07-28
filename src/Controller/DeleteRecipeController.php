@@ -20,12 +20,14 @@ final class DeleteRecipeController extends AbstractController
             throw $this->createNotFoundException(
                 'Recette introuvable à l\'id : '. $id
             );
-        } else {
-            $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_ERROR);
+        } elseif ($this->getUser() && $recipe->getUser() === $this->getUser()) {
+            $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_DELETE);
             $em->persist($recipe);
             $em->flush();
             $this->addFlash('success', 'Recette supprimée avec succès !');
             return $this->redirectToRoute('app_home');
+        } else {
+            return $this->redirectToRoute('app_login');
         }
     }
 }
