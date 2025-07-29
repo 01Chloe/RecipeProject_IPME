@@ -78,6 +78,9 @@
             <p>Pas encore de recette</p>
         {% endif %}
     </div>
+    {% if app.user and is_granted("ROLE_ADMIN") %}
+        <a href="{{ path('app_admin') }}" class="link link-admin">Admin</a>
+    {% endif %}
     <a href="{{ path('app_logout') }}" class="btn-logout">Se déconnecter</a>
 </div>
 {% endblock %}

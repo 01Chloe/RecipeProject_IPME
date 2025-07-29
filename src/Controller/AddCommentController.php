@@ -12,7 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_USER', statusCode: 401)]
 final class AddCommentController extends AbstractController
 {
     #[Route('/add/comment/{id}', name: 'app_add_comment')]
@@ -43,7 +45,7 @@ final class AddCommentController extends AbstractController
                 'addCommentForm' => $form
             ]);
         } else {
-            return $this->redirectToRoute('app_login');
+            return $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         }
     }
 }

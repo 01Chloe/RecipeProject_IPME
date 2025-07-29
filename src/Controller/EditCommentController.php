@@ -10,7 +10,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_USER', statusCode: 401)]
 final class EditCommentController extends AbstractController
 {
     #[Route('/edit/comment/{recipeId}/{commentId}', name: 'app_edit_comment')]
@@ -37,11 +39,10 @@ final class EditCommentController extends AbstractController
                 return $this->redirectToRoute('app_recipe', ['id'=>$recipeId]);
             }
             return $this->render('edit_comment/index.html.twig', [
-                'controller_name' => 'EditCommentController',
                 'editCommentForm' => $form
             ]);
         } else {
-            return $this->redirectToRoute('app_login');
+            return $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         }
     }
 }

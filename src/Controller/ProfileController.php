@@ -9,10 +9,12 @@ use App\Services\RecipeServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
+#[IsGranted('ROLE_USER', statusCode: 401)]
 final class ProfileController extends AbstractController
 {
     /**
@@ -28,7 +30,7 @@ final class ProfileController extends AbstractController
         if($user) {
             return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user);
         } else {
-            return  $this->redirectToRoute('app_login');
+            return  $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         }
     }
 }

@@ -5,6 +5,11 @@
 .craue_formflow_steplist{
     text-align: center;
 }
+.link-admin{
+    display: block;
+    margin-inline: auto;
+    width: fit-content;
+}
 @media (width > 768px) {
     .craue_formflow_steplist{
         display: flex;

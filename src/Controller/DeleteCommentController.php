@@ -8,7 +8,9 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_USER', statusCode: 401)]
 final class DeleteCommentController extends AbstractController
 {
     #[Route('/delete/comment/{recipeId}/{commentId}', name: 'app_delete_comment')]
@@ -27,7 +29,7 @@ final class DeleteCommentController extends AbstractController
             $this->addFlash('success', 'Commentaire supprimé avec succès !');
             return $this->redirectToRoute('app_recipe', ['id' => $recipeId]);
         } else {
-            return $this->redirectToRoute('app_login');
+            return $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         }
     }
 }
