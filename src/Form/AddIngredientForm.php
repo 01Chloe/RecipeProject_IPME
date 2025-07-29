@@ -26,10 +26,10 @@ class AddIngredientForm extends AbstractType
                     'data-list-selector' => 'ingredient',
                 ]
             ])
-            ->add('addCategory',ButtonType::class, [
+            ->add('addIngredient',ButtonType::class, [
                 'label' => 'Ajouter un ingrédent',
                 'attr' => [
-                    'class' => 'btn',
+                    'class' => 'btn btn-center',
                     'data-btn-selector' => 'ingredient',
                 ]])
         ;

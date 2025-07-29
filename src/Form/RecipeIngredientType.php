@@ -30,14 +30,17 @@ class RecipeIngredientType extends AbstractType
                         ->orderBy('i.name', 'ASC');
                 },
                 'attr' => [
-                    'class' => 'test',
+                    'class' => 'form-select',
                 ],
                 'choice_label' => 'name',
             ])
             ->add('quantity', TextType::class, [
                 'label' => 'Quantité',
                 'attr' => [
-                    'class' => 'input'
+                    'class' => 'input large'
+                ],
+                'label_attr' => [
+                    'class' => 'label'
                 ]
             ])
         ;

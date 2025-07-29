@@ -7,9 +7,9 @@
 {% block body %}
 <div class="main">
     <h1 class="title">Profil</h1>
-    <h2 class="title-profil">Ajouter une recette</h2>
+    <h2 class="title">Ajouter une recette</h2>
 
-    <div style="text-align: center;">
+    <div>
         {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
     </div>
 
@@ -67,7 +67,7 @@
         </div>
     {{ form_end(form) }}
 
-    <h2 class="title-profil">Mes recettes</h2>
+    <h2 class="title">Mes recettes</h2>
     <div class="recipes-container">
         {% set myRecipes = get_my_recipes() %}
         {% if myRecipes %}

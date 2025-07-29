@@ -18,7 +18,8 @@ class AddDirectivesForm extends AbstractType
             ->add('directives', null, [
                 'label' => 'Instructions',
                 'attr' => [
-                    'class' => 'input'
+                    'class' => 'input',
+                    'rows' => 15
                 ]
             ])
         ;

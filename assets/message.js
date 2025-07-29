@@ -35,7 +35,6 @@ function initButtonCollectionForm() {
             let i = 0;
             const savedChildren = [];
             for (const child of form.children) {
-                child.classList.add('w-100');
                 savedChildren.push(child.outerHTML);
             }
             form.innerHTML = '';
@@ -58,7 +57,7 @@ function initButtonCollectionForm() {
 
 function mainDivForm() {
     let newDiv = document.createElement('div');
-    newDiv.classList.add('d-flex');
+    newDiv.classList.add('ingredient-group');
     return newDiv;
 }
 
@@ -69,12 +68,6 @@ function createIcon(counter) {
     icon.alt = "Supprimer";
     icon.classList.add('icon');
     icon.style.cursor = 'pointer';
-    // icon.classList.add('fa');
-    // icon.classList.add('fa-trash');
-    // icon.classList.add('icon-click');
-    // icon.classList.add('me-3');
-    // icon.classList.add('mt-1');
-    // icon.classList.add('fa-2x');
     return icon;
 }
 

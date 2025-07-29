@@ -2,3 +2,13 @@
     margin-left: 1rem;
     font-family: "Ysabeau Office", serif;
 }
+.craue_formflow_steplist{
+    text-align: center;
+}
+@media (width > 768px) {
+    .craue_formflow_steplist{
+        display: flex;
+        gap: 3rem;
+        justify-content: center;
+    }
+}

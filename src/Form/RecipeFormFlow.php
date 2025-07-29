@@ -13,15 +13,15 @@ class RecipeFormFlow extends FormFlow
      {
          return [
              [
-                 'label' => '1. Informations',
+                 'label' => 'Informations',
                  'form_type' => AddRecipeForm::class,
              ],
              [
-                 'label' => "2. Ingredients",
+                 'label' => "Ingredients",
                  'form_type' => AddIngredientForm::class
              ],
              [
-                 'label' => "3. Instructions",
+                 'label' => "Instructions",
                  'form_type' => AddDirectivesForm::class
              ]
          ];
