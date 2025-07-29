@@ -1,5 +1,6 @@
 import './message.js';
 import './hideAlert.js';
+import './likes.js';
 /*
  * Welcome to your app's main JavaScript file!
  *

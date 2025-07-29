@@ -42,6 +42,11 @@
     display: flex;
     justify-content: space-between;
 }
+.btn-like{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
 .recipe-modication-area{
     display: flex;
     justify-content: space-between;
