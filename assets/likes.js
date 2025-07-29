@@ -24,10 +24,32 @@ function initButtonLike() {
                     }
                 });
         });
-        // button.removeAttribute('data-like'); // Sécurité pour ne pas communiquer d'informations sur nos routes AJAX
+        button.removeAttribute('data-like'); // Sécurité pour ne pas communiquer d'informations sur nos routes AJAX
     });
+}
+
+function changeLikeCount() {
+    const countItem = document.querySelector('[data-count]');
+    const urlCount = countItem.dataset.count;
+    fetch(urlCount)
+        .then((response) => {
+            if (response.status === 200) {
+                return response.json();
+            } else {
+                console.log(response);
+                throw new Error("error");
+            }
+        })
+        .then((jsonContent) => {
+            console.log(jsonContent);
+            // countItem.innerHTML = jsonContent[0];
+        });
 }
 
 window.addEventListener('load', () => {
     initButtonLike();
+});
+
+window.addEventListener('load', () => {
+    changeLikeCount();
 });

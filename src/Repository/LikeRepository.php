@@ -16,6 +16,16 @@ class LikeRepository extends ServiceEntityRepository
         parent::__construct($registry, Like::class);
     }
 
+    public function getLikeCount(string $id): array
+    {
+        $qb = $this->createQueryBuilder('l')
+            ->select('COUNT(l.id)')
+            ->where('l.recipe = :id')
+            ->setParameter('id', $id);
+
+        return $qb->getQuery()->getResult();
+    }
+
     //    /**
     //     * @return Like[] Returns an array of Like objects
     //     */

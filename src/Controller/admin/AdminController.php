@@ -22,7 +22,6 @@ final class AdminController extends AbstractController
         $comments = $commentRepository->findBy(['status' => 200], ['createdAt' => "DESC"]);
 
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
             'comments' => $comments,
             'recipes' => $recipes
         ]);

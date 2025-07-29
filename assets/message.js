@@ -64,7 +64,7 @@ function mainDivForm() {
 function createIcon(counter) {
     const icon= document.createElement('img');
     icon.setAttribute('data-delete-form', counter.toString());
-    icon.src = "./assets/icons/xmark.svg";
+    icon.src = "/assets/icons/xmark.svg";
     icon.alt = "Supprimer";
     icon.classList.add('icon');
     icon.style.cursor = 'pointer';

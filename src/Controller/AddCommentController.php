@@ -41,7 +41,6 @@ final class AddCommentController extends AbstractController
             }
 
             return $this->render('add_comment/index.html.twig', [
-                'controller_name' => 'AddCommentController',
                 'addCommentForm' => $form
             ]);
         } else {
