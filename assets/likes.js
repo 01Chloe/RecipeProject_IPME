@@ -1,5 +1,7 @@
 function initButtonLike() {
     const buttons = document.querySelectorAll('[data-like]');
+    const countItem = document.querySelector('[data-count]');
+    const urlCount = countItem.dataset.count;
     buttons.forEach((button) => {
         const url = button.dataset.like;
         button.addEventListener('click', () => {
@@ -23,33 +25,26 @@ function initButtonLike() {
                         window.location.href = jsonContent;
                     }
                 });
-        });
-        button.removeAttribute('data-like'); // Sécurité pour ne pas communiquer d'informations sur nos routes AJAX
-    });
-}
 
-function changeLikeCount() {
-    const countItem = document.querySelector('[data-count]');
-    const urlCount = countItem.dataset.count;
-    fetch(urlCount)
-        .then((response) => {
-            if (response.status === 200) {
-                return response.json();
-            } else {
-                console.log(response);
-                throw new Error("error");
-            }
-        })
-        .then((jsonContent) => {
-            console.log(jsonContent);
-            // countItem.innerHTML = jsonContent[0];
+            fetch(urlCount)
+                .then((response) => {
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        console.log(response);
+                        throw new Error("error");
+                    }
+                })
+                .then((jsonContent) => {
+                    countItem.innerHTML = jsonContent[0][1] + " likes";
+                });
         });
+        // Sécurité pour ne pas communiquer d'informations sur nos routes AJAX
+        button.removeAttribute('data-like');
+        countItem.removeAttribute('data-count');
+    });
 }
 
 window.addEventListener('load', () => {
     initButtonLike();
-});
-
-window.addEventListener('load', () => {
-    changeLikeCount();
 });
