@@ -50,7 +50,7 @@ readonly class RecipeServices
             if ($flow->getCurrentStep() === 1) {
                 /** @var UploadedFile|null $file */
                 $file = $form->get('imagePath')->getData();
-                // Stock in image path in session
+                // Stock image path in session
                 if ($file !== null) {
                     $session->set(
                         'filename_recipe',

@@ -8,7 +8,8 @@
         <h1 class="title">Tableau de bord</h1>
          <div>
             <h2 class="title-profil">Recettes à valider :</h2>
-             {% if recipes %}
+             <div class="admin-desktop-recipe-container">
+                {% if recipes %}
                  {% for recipe in recipes %}
                      <div class="commment admin-comment">
                          <div class="comment-content-area admin">
@@ -36,10 +37,12 @@
              {% else %}
                  <p class="padding">Aucune recette à valider</p>
              {% endif %}
+             </div>
          </div>
         <div>
             <h2 class="title-profil">Commentaires à valider :</h2>
-            {% if comments %}
+            <div class="admin-desktop-comments-container">
+                {% if comments %}
                 {% for comment in comments %}
                     <div class="commment admin-comment">
                         <div class="comment-content-area admin">
@@ -65,6 +68,7 @@
             {% else %}
             <p class="padding">Aucun commentaire à valider</p>
             {% endif %}
+            </div>
         </div>
     </div>
 </main>

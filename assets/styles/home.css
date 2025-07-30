@@ -112,3 +112,9 @@
 .current{
     border-bottom: 1px solid var(--color-dark-900);
 }
+
+@media (width > 768px) {
+    .home-title{
+        height: 198px;
+    }
+}

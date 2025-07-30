@@ -42,7 +42,7 @@ final class AdminController extends AbstractController
         $em->persist($comment);
         $em->flush();
 
-        $this->addFlash('success', 'Commentaire ajouté avec success !');
+        $this->addFlash('success', 'Commentaire ajouté avec succès !');
         return $this->redirectToRoute('app_admin');
     }
 
@@ -78,7 +78,7 @@ final class AdminController extends AbstractController
         $em->persist($recipe);
         $em->flush();
 
-        $this->addFlash('success', 'Recette ajoutée avec success !');
+        $this->addFlash('success', 'Recette ajoutée avec succès !');
         return $this->redirectToRoute('app_admin');
     }
 
@@ -96,7 +96,7 @@ final class AdminController extends AbstractController
         $em->persist($recipe);
         $em->flush();
 
-        $this->addFlash('success', 'Recette suppimée avec success !');
+        $this->addFlash('success', 'Recette suppimée avec succès !');
         return $this->redirectToRoute('app_admin');
     }
 }

@@ -67,6 +67,7 @@ function createIcon(counter) {
     icon.src = "/assets/icons/xmark.svg";
     icon.alt = "Supprimer";
     icon.classList.add('icon');
+    icon.classList.add('center-icon');
     icon.style.cursor = 'pointer';
     return icon;
 }

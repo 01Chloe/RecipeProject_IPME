@@ -12,10 +12,17 @@
     .dashboard-admin{
         margin-inline: 5rem;
     }
+    .admin-desktop-comments-container, .admin-desktop-recipe-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .admin-comment{
+        width: 398px;
+    }
     .comment-content-area.admin{
         display: flex;
         align-items: center;
-        gap: 2rem;
+        gap: 1rem;
     }
 }
 @media (width > 1044px) {

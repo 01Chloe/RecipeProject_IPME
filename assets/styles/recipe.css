@@ -88,15 +88,20 @@
 }
 
 @media (width > 768px) {
+    .recipe-desktop-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
     .recipe-container{
+        flex: 1;
         padding: 1rem 3rem;
     }
     .recipe-img{
-        width: 60%;
+        width: 288px;
         height: 228px;
         border-radius: 4px;
-        display: block;
-        margin-inline: auto;
+        margin-left: 3rem;
     }
     .recipe-comments{
         padding: 2rem 3rem;
