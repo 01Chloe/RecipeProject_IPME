@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Recipe;
 use App\Entity\User;
 use App\Form\RecipeFormFlow;
+use App\Services\FileUploaderService;
 use App\Services\RecipeServices;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,12 +24,12 @@ final class ProfileController extends AbstractController
      * @throws LoaderError
      */
     #[Route('/profile', name: 'app_profile')]
-    public function index(RecipeServices $recipeServices, RecipeFormFlow $flow): Response
+    public function index(RecipeServices $recipeServices, RecipeFormFlow $flow, FileUploaderService $fileUploaderService): Response
     {
         /** @var User $user */
         $user = $this->getUser();
         if($user) {
-            return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user);
+            return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user, $fileUploaderService);
         } else {
             return  $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         }
