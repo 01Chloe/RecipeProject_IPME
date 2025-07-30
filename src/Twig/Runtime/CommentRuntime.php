@@ -12,7 +12,6 @@ class CommentRuntime implements RuntimeExtensionInterface
         private CommentRepository $commentRepository
     )
     {
-        // Inject dependencies if needed
     }
 
     public function getComments(Recipe $recipe): array

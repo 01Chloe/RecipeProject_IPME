@@ -8,7 +8,6 @@ function initCollectionForm() {
             let counter = list.children.length;
             let newWidget = list.getAttribute('data-prototype');
             newWidget = newWidget.replace(/__name__/g, counter.toString());
-            // newWidget = newWidget.replace('mb-3', 'mb-3 w-100');
 
             const icon = createIcon(counter);
 

@@ -16,7 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class EditCommentController extends AbstractController
 {
     #[Route('/edit/comment/{recipeId}/{commentId}', name: 'app_edit_comment')]
-    public function index(string $recipeId, string $commentId, Request $request, EntityManagerInterface $em, RecipeRepository $recipeRepository, CommentRepository $commentRepository): Response
+    public function index(string $recipeId, string $commentId, Request $request, EntityManagerInterface $em, CommentRepository $commentRepository): Response
     {
         $user = $this->getUser();
         $comment = $commentRepository->findOneBy(['id' => $commentId]);

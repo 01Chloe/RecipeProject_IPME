@@ -49,7 +49,6 @@ class RecipeIngredientType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => RecipeIngredient::class,
-
         ]);
     }
 }

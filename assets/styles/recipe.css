@@ -26,9 +26,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    & .infos-img{
-        width: 24px;
-    }
     & .level-group{
         display: flex;
     }

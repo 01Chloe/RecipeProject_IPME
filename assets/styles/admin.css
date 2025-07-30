@@ -5,9 +5,6 @@
     border-radius: 4px;
     background-color: #fff;
 }
-.padding{
-    padding: 0 1rem 1rem;
-}
 @media (width > 768px) {
     .dashboard-admin{
         margin-inline: 5rem;

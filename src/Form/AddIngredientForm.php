@@ -31,7 +31,8 @@ class AddIngredientForm extends AbstractType
                 'attr' => [
                     'class' => 'btn btn-center',
                     'data-btn-selector' => 'ingredient',
-                ]])
+                ]]
+            )
         ;
     }
 

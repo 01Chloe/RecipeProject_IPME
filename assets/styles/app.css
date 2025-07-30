@@ -33,11 +33,14 @@ body {
     padding: 0.5rem 1rem;
     margin: 1rem;
 }
+.padding{
+    padding: 0 1rem 1rem;
+}
 .link{
     color: var(--color-dark-900);
 }
 .icon{
-    width: 24px;
+    width: var(--size-icon);
 }
 .btn-logout{
     color: var(--color-primary);
