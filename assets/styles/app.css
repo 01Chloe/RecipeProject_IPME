@@ -33,7 +33,7 @@ body {
     padding: 0.5rem 1rem;
     margin: 1rem;
 }
-.padding{
+.padding, .form{
     padding: 0 1rem 1rem;
 }
 .link{

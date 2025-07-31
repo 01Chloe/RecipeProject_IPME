@@ -13,7 +13,7 @@
         {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
     </div>
 
-    {{ form_start(form, {'attr': {'class': 'padding'}}) }}
+    {{ form_start(form, {'attr': {'class': 'form'}}) }}
         {{ form_errors(form) }}
         {% if flow.getCurrentStepNumber() == 1 %}
             <div class="input-group">
