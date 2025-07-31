@@ -7,77 +7,86 @@
 {% block body %}
 <div class="main">
     <h1 class="title">Profil</h1>
-    <h2 class="title">Ajouter une recette</h2>
+    <div class="profile-recipe-area">
+        <div class="recipe-form-area">
 
-    <div>
-        {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
-    </div>
+            <h2 class="title">Ajouter une recette</h2>
 
-    {{ form_start(form, {'attr': {'class': 'form'}}) }}
-        {{ form_errors(form) }}
-        {% if flow.getCurrentStepNumber() == 1 %}
-            <div class="input-group">
-                {{ form_label(form.title) }}
-                {{ form_widget(form.title) }}
-                {{ form_errors(form.title) }}
+            <div>
+                {% include '@CraueFormFlow/FormFlow/stepList.html.twig' %}
             </div>
-            {{ form_label(form.level) }}
-            {{ form_widget(form.level) }}
-            {{ form_errors(form.level) }}
-            <div class="input-group">
-                {{ form_label(form.duration) }}
-                {{ form_widget(form.duration) }}
-                {{ form_errors(form.duration) }}
-            </div>
-            <div class="input-group">
-                {{ form_label(form.imagePath) }}
-                {{ form_widget(form.imagePath) }}
-                {{ form_errors(form.imagePath) }}
-            </div>
-            {{ form_label(form.category) }}
-            {{ form_widget(form.category) }}
-            {{ form_errors(form.category) }}
-        {% endif %}
 
-        {% if flow.getCurrentStepNumber() == 2 %}
-            {{ form_row(form.recipeIngredients) }}
-        {% endif %}
+            {{ form_start(form, {'attr': {'class': 'form'}}) }}
+                {{ form_errors(form) }}
+                {% if flow.getCurrentStepNumber() == 1 %}
+                    <div class="input-group">
+                        {{ form_label(form.title) }}
+                        {{ form_widget(form.title) }}
+                        {{ form_errors(form.title) }}
+                    </div>
+                    {{ form_label(form.level) }}
+                    {{ form_widget(form.level) }}
+                    {{ form_errors(form.level) }}
+                    <div class="input-group">
+                        {{ form_label(form.duration) }}
+                        {{ form_widget(form.duration) }}
+                        {{ form_errors(form.duration) }}
+                    </div>
+                    <div class="input-group">
+                        {{ form_label(form.imagePath) }}
+                        {{ form_widget(form.imagePath) }}
+                        {{ form_errors(form.imagePath) }}
+                    </div>
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                    {{ form_errors(form.category) }}
+                {% endif %}
 
-        {% if flow.getCurrentStepNumber() == 3 %}
-            <div class="input-group">
-                {{ form_label(form.directives) }}
-                {{ form_widget(form.directives) }}
-                {{ form_errors(form.directives) }}
-            </div>
-        {% endif %}
+                {% if flow.getCurrentStepNumber() == 2 %}
+                    {{ form_row(form.recipeIngredients) }}
+                {% endif %}
 
-        {{ form_rest(form) }}
+                {% if flow.getCurrentStepNumber() == 3 %}
+                    <div class="input-group">
+                        {{ form_label(form.directives) }}
+                        {{ form_widget(form.directives) }}
+                        {{ form_errors(form.directives) }}
+                    </div>
+                {% endif %}
 
-        <div class="submit-group">
-            {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
-                craue_formflow_instance: flow,
-                craue_formflow_button_class_back: 'btn',
-                craue_formflow_button_label_back: 'Précèdent',
-                craue_formflow_button_class_next: 'btn',
-                craue_formflow_button_label_next: 'Suivant',
-                craue_formflow_button_class_finish: 'btn',
-                craue_formflow_button_label_finish: 'Terminer',
-                craue_formflow_button_render_reset: false,
-            } %}
+                {{ form_rest(form) }}
+
+                <div class="submit-group">
+                    {% include '@CraueFormFlow/FormFlow/buttons.html.twig' with {
+                        craue_formflow_instance: flow,
+                        craue_formflow_button_class_back: 'btn',
+                        craue_formflow_button_label_back: 'Précèdent',
+                        craue_formflow_button_class_next: 'btn',
+                        craue_formflow_button_label_next: 'Suivant',
+                        craue_formflow_button_class_finish: 'btn',
+                        craue_formflow_button_label_finish: 'Terminer',
+                        craue_formflow_button_render_reset: false,
+                    } %}
+                </div>
+            {{ form_end(form) }}
         </div>
-    {{ form_end(form) }}
 
-    <h2 class="title">Mes recettes</h2>
-    <div class="recipes-container">
-        {% set myRecipes = get_my_recipes() %}
-        {% if myRecipes %}
-            {% include 'partials/_recipes_loop.html.twig' with {
-                'recipes': myRecipes
-            } %}
-            {% else %}
-            <p>Pas encore de recette</p>
-        {% endif %}
+        <div class="my-recipe-area">
+
+            <h2 class="title">Mes recettes</h2>
+            <div class="recipes-container">
+                {% set myRecipes = get_my_recipes() %}
+                {% if myRecipes %}
+                    {% include 'partials/_recipes_loop.html.twig' with {
+                        'recipes': myRecipes
+                    } %}
+                    {% else %}
+                    <p>Pas encore de recette</p>
+                {% endif %}
+            </div>
+        </div>
     </div>
+
     {% if app.user and is_granted("ROLE_ADMIN") %}
         <a href="{{ path('app_admin') }}" class="link link-admin">Admin</a>
     {% endif %}

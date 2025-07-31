@@ -17,3 +17,16 @@
         justify-content: center;
     }
 }
+@media (width > 1044px) {
+    .profile-recipe-area{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
+    .recipe-form-area{
+        flex: 1;
+    }
+    .my-recipe-area{
+        flex: 1;
+    }
+}

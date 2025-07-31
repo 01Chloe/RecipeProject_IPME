@@ -85,8 +85,3 @@
         margin-inline: auto;
     }
 }
-@media (width > 1044px) {
-    .form{
-        max-width: 30%;
-    }
-}
