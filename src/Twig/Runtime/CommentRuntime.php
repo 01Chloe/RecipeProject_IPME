@@ -16,7 +16,7 @@ class CommentRuntime implements RuntimeExtensionInterface
 
     public function getComments(Recipe $recipe): array
     {
-        $comment = $this->commentRepository->findBy(['recipe'=>$recipe, 'status' => 300]);
+        $comment = $this->commentRepository->findBy(['recipe'=>$recipe, 'status' => 300], ['createdAt' => 'DESC']);
         return $comment;
     }
 }

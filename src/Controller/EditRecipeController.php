@@ -23,7 +23,8 @@ final class EditRecipeController extends AbstractController
         $user = $this->getUser();
         $recipe = $recipeRepository->findOneBy(['id' => $id, 'user' => $user]);
         if($user) {
-            return $recipeServices->handleRecipeFormAction($flow, $recipe, $user, $fileUploaderService);
+            $isAdd = false;
+            return $recipeServices->handleRecipeFormAction($flow, $recipe, $user, $fileUploaderService, $isAdd);
         } else {
             return  $this->redirectToRoute('app_login');
         }

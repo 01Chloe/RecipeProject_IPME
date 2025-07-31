@@ -38,7 +38,8 @@ readonly class RecipeServices
         RecipeFormFlow $flow,
         Recipe $recipe,
         User $user,
-        FileUploaderService $fileUploaderService
+        FileUploaderService $fileUploaderService,
+        bool $isAdd
     ): Response {
         $flow->bind($recipe);
         $form = $flow->createForm();
@@ -67,7 +68,11 @@ readonly class RecipeServices
                     $session->remove('filename_recipe');
                 }
                 $recipe->setUser($user);
-                $recipe->setCreatedAt(new \DateTime());
+                if($isAdd) {
+                    $recipe->setCreatedAt(new \DateTime());
+                } else {
+                    $recipe->setUpdatedAt(new \DateTime());
+                }
                 $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_IN_VALIDATION);
                 foreach ($recipe->getRecipeIngredients() as $recipeIngredient){
                     $recipeIngredient->setRecipe($recipe);

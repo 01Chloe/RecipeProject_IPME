@@ -29,7 +29,8 @@ final class ProfileController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         if($user) {
-            return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user, $fileUploaderService);
+            $isAdd = true;
+            return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user, $fileUploaderService, $isAdd);
         } else {
             return  $this->denyAccessUnlessGranted('IS_AUTHENTICATED');
         }
