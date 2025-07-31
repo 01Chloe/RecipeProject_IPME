@@ -11,6 +11,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RecipeIngredientType extends AbstractType
 {
@@ -33,6 +34,11 @@ class RecipeIngredientType extends AbstractType
                     'class' => 'form-select',
                 ],
                 'choice_label' => 'name',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez choissir au moins 1 ingrédients',
+                    ])
+                ],
             ])
             ->add('quantity', TextType::class, [
                 'label' => 'Quantité',
@@ -41,7 +47,12 @@ class RecipeIngredientType extends AbstractType
                 ],
                 'label_attr' => [
                     'class' => 'label'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez indiquer la quantité',
+                    ])
+                ],
             ])
         ;
     }

@@ -21,17 +21,32 @@ class RegistrationForm extends AbstractType
             ->add('last_name', null,
                 ['label'=> 'Nom',
                     'attr' => [
-                        'class' => 'input']
+                        'class' => 'input'],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez renseigner votre nom',
+                        ])
+                    ],
                 ])
             ->add('first_name', null,
                 ['label'=> 'Prénom',
                     'attr' => [
-                        'class' => 'input']
+                        'class' => 'input'],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez renseigner votre prénom',
+                        ])
+                    ],
                 ])
             ->add('email', null,
                 ['label'=> 'Email',
                     'attr' => [
-                        'class' => 'input']
+                        'class' => 'input'],
+                    'constraints' => [
+                        new NotBlank([
+                            'message' => 'Veuillez renseigner votre email',
+                        ])
+                    ],
                 ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -41,11 +56,11 @@ class RegistrationForm extends AbstractType
                 'attr' => ['autocomplete' => 'new-password', 'class' => 'input'],
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez entrer un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
+                        'minMessage' => 'Votre mot de passe doit faire un moins {{ limit }} caractères',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,
                     ]),

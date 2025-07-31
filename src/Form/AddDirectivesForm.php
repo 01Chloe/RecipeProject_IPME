@@ -9,6 +9,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddDirectivesForm extends AbstractType
 {
@@ -20,7 +21,12 @@ class AddDirectivesForm extends AbstractType
                 'attr' => [
                     'class' => 'input',
                     'rows' => 15
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Les instructions doivent être remplies',
+                    ])
+                ],
             ])
         ;
     }

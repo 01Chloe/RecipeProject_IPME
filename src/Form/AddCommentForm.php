@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddCommentForm extends AbstractType
 {
@@ -19,13 +21,23 @@ class AddCommentForm extends AbstractType
                 'label' => 'Titre',
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le titre du commentaire doit être remplis',
+                    ])
+                ],
             ])
             ->add('comment', null, [
                 'label' => 'Commentaire',
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le commentaire doit être remplis',
+                    ])
+                ],
             ])
         ;
     }

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class AddRecipeForm extends AbstractType
 {
@@ -20,7 +21,12 @@ class AddRecipeForm extends AbstractType
                 'label' => 'Titre',
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Le titre de la recette doit être renseigné',
+                    ])
+                ],
             ])
             ->add('level', ChoiceType::class, [
                 'label' => 'Difficulté',
@@ -30,24 +36,44 @@ class AddRecipeForm extends AbstractType
                     'recipe.level.2' => 2,
                     'recipe.level.3' => 3,
                 ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez séléctionner la difficulté',
+                    ])
+                ],
             ])
             ->add('duration', null, [
                 'label' => 'Durée',
                 'attr' => [
                     'class' => 'input'
-                ]
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez remplir la durée de la recette',
+                    ])
+                ],
             ])
             ->add('imagePath', FileType::class, [
                 'label' => 'Image',
                 'attr' => [
                     'class' => 'input'
                 ],
-                'mapped' => false
+                'mapped' => false,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez choissir une image à votre recette',
+                    ])
+                ],
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'label',
                 'expanded' => true,
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez séléctionner une catégorie',
+                    ])
+                ],
             ])
         ;
     }
