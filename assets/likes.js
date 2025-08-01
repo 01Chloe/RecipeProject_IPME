@@ -40,7 +40,12 @@ function initButtonLike() {
                     })
                     // get and display count of like
                     .then((jsonContent) => {
-                        countItem.innerHTML = jsonContent[0][1] + " likes";
+                        let nbCount = jsonContent[0][1];
+                        if(nbCount < 2) {
+                            countItem.innerHTML = nbCount + " like";
+                        } else {
+                            countItem.innerHTML = nbCount + " likes";
+                        }
                     });
             });
             // Sécurité pour ne pas communiquer d'informations sur nos routes AJAX

@@ -44,7 +44,11 @@
                 {% for like in recipe.likes %}
                     {% set count = count + 1 %}
                 {% endfor %}
-                <p data-count="{{ path('app_check_count_like', {'id': recipe.id}) }}">{{ count }} likes</p>
+                {% if count < 2 %}
+                    <p data-count="{{ path('app_check_count_like', {'id': recipe.id}) }}">{{ count }} like</p>
+                {% else %}
+                    <p data-count="{{ path('app_check_count_like', {'id': recipe.id}) }}">{{ count }} likes</p>
+                {% endif %}
                 {% if app.user %}
                 <button class="btn-like"
                         title="Ajouter un like"
