@@ -37,6 +37,14 @@
                 </div>
             </div>
             <div class="recipe-description">
+                <ul class="recipe-ingredients-list">
+                    {% for ingredients in recipe.recipeIngredients %}
+                        <li class="recipe-ingredient-item">
+                            {{ ingredients.ingredient.name }}
+                            <span>{{ ingredients.quantity }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
                 <p>{{ recipe.directives }}</p>
             </div>
             <div class="recipe-like-group">

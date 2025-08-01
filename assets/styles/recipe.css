@@ -17,7 +17,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-    padding: 0.5rem;
+    padding: 0.5rem 0;
     filter: drop-shadow(0 0 5px rgba(0,0,0,0.2));
 }
 .infos{
@@ -28,6 +28,14 @@
     position: relative;
     & .level-group{
         display: flex;
+    }
+}
+.recipe-ingredients-list{
+    margin-bottom: 0.5rem;
+    list-style: none;
+    & .recipe-ingredient-item{
+        display: flex;
+        justify-content: space-between;
     }
 }
 .step-title{
