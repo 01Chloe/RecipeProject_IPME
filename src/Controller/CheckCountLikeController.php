@@ -13,6 +13,7 @@ final class CheckCountLikeController extends AbstractController
     #[Route('/check/count/like/{id}', name: 'app_check_count_like')]
     public function index(string $id, LikeRepository $likeRepository): JsonResponse
     {
+        // Recupère le nombre de like par recette
         $likeCount = $likeRepository->getLikeCount($id);
         return new JsonResponse($likeCount);
     }

@@ -26,6 +26,7 @@ class RecipeIngredientType extends AbstractType
             ->add('ingredient', EntityType::class, [
                 'label' => false,
                 'class' => Ingredient::class,
+                // pour afficher les ingrédients par ordre alphabetique
                 'query_builder' => function (EntityRepository $er): QueryBuilder {
                     return $er->createQueryBuilder('i')
                         ->orderBy('i.name', 'ASC');

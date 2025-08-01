@@ -22,11 +22,13 @@ class RecipeRuntime implements RuntimeExtensionInterface
 
     public function hasLike(Recipe $recipe): Like|null
     {
+        // retourne true si l'utilisateur à liké cette recette false sinon
         $user = $this->security->getUser();
         return $this->likeRepository->findOneBy(['recipe' => $recipe, 'user' => $user]);
     }
     public function getMyRecipes(): array
     {
+        // retourne toutes les recettes d'un utilisateur qui ont un status "validé" par ordre décroissant
         $user = $this->security->getUser();
         return $this->recipeRepository->findBy(['user' => $user, 'status' => 300], ['createdAt' => "DESC"]);
     }

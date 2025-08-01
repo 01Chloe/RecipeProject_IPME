@@ -22,7 +22,9 @@ final class EditRecipeController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         $recipe = $recipeRepository->findOneBy(['id' => $id, 'user' => $user]);
-        if($user) {
+        if($user && $recipe->getUser() === $user) {
+            // si l'utisateur est connecté et que c'est sa recette, il peut la modifier
+            // pour affichage différent entre le formulaire d'ajout et celui d'edition
             $isAdd = false;
             return $recipeServices->handleRecipeFormAction($flow, $recipe, $user, $fileUploaderService, $isAdd);
         } else {

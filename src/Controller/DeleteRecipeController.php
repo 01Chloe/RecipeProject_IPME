@@ -25,8 +25,9 @@ final class DeleteRecipeController extends AbstractController
                 'Recette introuvable à l\'id : '. $id
             );
         } elseif ($user && $recipe->getUser() === $user) {
+            // si l'utilisateur est connecté et que c'est sa recette, il peut la supprimer
             $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_DELETE);
-            // remove file from server
+            // supprimer le fichier du server
             $fileUploaderService->deleteFileFromDisk($recipe->getImagePath());
             $em->persist($recipe);
             $em->flush();

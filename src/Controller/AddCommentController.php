@@ -26,12 +26,14 @@ final class AddCommentController extends AbstractController
             $comment = new Comment();
             $recipe = $recipeRepository->findOneBy(['id' => $id]);
             $form = $this->createForm(AddCommentForm::class, $comment);
+            // Pour lier le formulaire à la requête
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $comment->setUser($user);
                 $comment->setRecipe($recipe);
                 $comment->setCreatedAt(new \DateTime());
+                // Status en cours de validation
                 $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_IN_VALIDATION);
                 $em->persist($comment);
                 $em->flush();

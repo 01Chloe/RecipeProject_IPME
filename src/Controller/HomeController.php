@@ -14,6 +14,8 @@ final class HomeController extends AbstractController
     #[Route('/', name: 'app_home')]
     public function index(RecipeRepository $recipeRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        // knpPagination
+        // 10 recettes par page
         $recipesAndCategories = $paginator->paginate(
             $recipeRepository->findBy(['status' => 300], ['createdAt' => "DESC"]),
             $request->query->getInt('page', 1),

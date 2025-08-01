@@ -16,6 +16,7 @@ class CommentRuntime implements RuntimeExtensionInterface
 
     public function getComments(Recipe $recipe): array
     {
+        // retourne tous les commentaires d'une recette qui ont un status "validé" par ordre décroissant
         $comment = $this->commentRepository->findBy(['recipe'=>$recipe, 'status' => 300], ['createdAt' => 'DESC']);
         return $comment;
     }

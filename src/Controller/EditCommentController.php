@@ -26,7 +26,9 @@ final class EditCommentController extends AbstractController
             );
         }
         if($user && $comment->getUser() === $user) {
+            // si l'utilisateur est connecter et que c'est son commentaire, il peut le modifier
             $form = $this->createForm(AddCommentForm::class, $comment);
+            // pour lier le formulaire à la requête
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {

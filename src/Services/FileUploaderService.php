@@ -29,10 +29,15 @@ readonly class FileUploaderService
      */
     public function uploadFile(UploadedFile $uploadedFile, string $namespace = ''): string
     {
+        // définit le chemin de destination avec le namespace (sous-dossier)
         $destination = $this->pathPublicUploadsDir . $namespace;
+        // récupère le nom original du fichier (sans l'extension)
         $originalFilename = pathinfo($uploadedFile->getClientOriginalName(), PATHINFO_FILENAME);
+        // génère un nouveau nom de fichier unique pour éviter les collisions et ajoute l'extension
         $newFilename = $originalFilename . '-' . uniqid() . '.' . $uploadedFile->guessExtension();
+        // déplace le fichier vers le dossier de destination avec le nouveau nom
         $uploadedFile->move($destination, $newFilename);
+        // retourne le chemin relatif du fichier
         return $this->uploadDir . $namespace . '/' . $newFilename;
     }
 
@@ -40,8 +45,11 @@ readonly class FileUploaderService
     {
         if ($file === null) return;
 
+        // crée une instance de Filesystem pour manipuler le système de fichiers
         $fs = new Filesystem();
+        // construit le chemin absolu du fichier à supprimer
         $targetDir = $this->pathPublicDir . $file;
+        // supprime le fichier
         $fs->remove($targetDir);
     }
 

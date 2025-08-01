@@ -23,6 +23,7 @@ final class DeleteCommentController extends AbstractController
                 'Commentaire introuvable à l\'id : ' . $commentId
             );
         } elseif($user && $comment->getUser() === $user) {
+            // si l'utilisateur est connecté et que c'est son commentaire, il peut le supprimer
             $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_DELETE);
             $em->persist($comment);
             $em->flush();

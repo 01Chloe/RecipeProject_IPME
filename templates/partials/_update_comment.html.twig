@@ -2,17 +2,17 @@
 
 <h1 class="title">{{ title}} un commentaire</h1>
 {{ form_start(form, {'attr': {'class': 'form'}}) }}
-<div class="input-group">
-    {{ form_label(form.title) }}
-    {{ form_widget(form.title) }}
-    {{ form_errors(form.title) }}
-</div>
-<div class="input-group">
-    {{ form_label(form.comment) }}
-    {{ form_widget(form.comment) }}
-    {{ form_errors(form.comment) }}
-</div>
-<div class="submit-group">
-    <button type="submit" class="btn">{{ title }}</button>
-</div>
+    <div class="input-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
+    </div>
+    <div class="input-group">
+        {{ form_label(form.comment) }}
+        {{ form_widget(form.comment) }}
+        {{ form_errors(form.comment) }}
+    </div>
+    <div class="submit-group">
+        <button type="submit" class="btn">{{ title }}</button>
+    </div>
 {{ form_end(form) }}

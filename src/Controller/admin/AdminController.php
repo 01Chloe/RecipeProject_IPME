@@ -18,6 +18,7 @@ final class AdminController extends AbstractController
     #[Route('/admin', name: 'app_admin')]
     public function index(CommentRepository $commentRepository, RecipeRepository $recipeRepository): Response
     {
+        // Recupére les recettes et les commentaires à valider
         $recipes = $recipeRepository->findBy(['status' => 200], ['createdAt' => 'DESC']);
         $comments = $commentRepository->findBy(['status' => 200], ['createdAt' => "DESC"]);
 
@@ -38,6 +39,7 @@ final class AdminController extends AbstractController
             );
         }
 
+        // Attribut le status "valide" au commentaie
         $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_VALIDATE);
         $em->persist($comment);
         $em->flush();
@@ -56,6 +58,7 @@ final class AdminController extends AbstractController
             );
         }
 
+        // Attribut le status "supprimé" au commentaire
         $comment->setStatus(CommentStatusEnum::COMMENT_STATUS_DELETE);
         $em->persist($comment);
         $em->flush();
@@ -74,6 +77,7 @@ final class AdminController extends AbstractController
             );
         }
 
+        // Attribut le status "valide" à la recette
         $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_VALIDATE);
         $em->persist($recipe);
         $em->flush();
@@ -92,6 +96,7 @@ final class AdminController extends AbstractController
             );
         }
 
+        // Attribut le status "supprimé" à la recette
         $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_DELETE);
         $em->persist($recipe);
         $em->flush();

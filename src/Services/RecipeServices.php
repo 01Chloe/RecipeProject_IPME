@@ -43,15 +43,18 @@ readonly class RecipeServices
     ): Response {
         $flow->bind($recipe);
         $form = $flow->createForm();
+        // ouvre une session
         $session = $this->requestStack->getSession();
 
         if ($flow->isValid($form)) {
             $flow->saveCurrentStepData($form);
 
+            // si l'utilisateur en est à l'étape de l'ajout de l'image
             if ($flow->getCurrentStep() === 1) {
                 /** @var UploadedFile|null $file */
+                // recuprère le chemin de l'image
                 $file = $form->get('imagePath')->getData();
-                // Stock image path in session
+                // Stock le chemin de l'image en session
                 if ($file !== null) {
                     $session->set(
                         'filename_recipe',
@@ -63,17 +66,24 @@ readonly class RecipeServices
             if($flow->nextStep()) {
                 $form = $flow->createForm();
             } else {
+                // si il une un chemin d'image en session
                 if ($session->has('filename_recipe')) {
+                    // on le recupère et on le stocke en base de données
                     $recipe->setImagePath($session->get('filename_recipe'));
+                    // supprimer le chemin de l'image de la session car plus utile
                     $session->remove('filename_recipe');
                 }
                 $recipe->setUser($user);
                 if($isAdd) {
+                    // si c'est un ajout de recette, ajouter une date de création
                     $recipe->setCreatedAt(new \DateTime());
                 } else {
+                    // sinon changer la date de modification
                     $recipe->setUpdatedAt(new \DateTime());
                 }
+                // mettre le status de la recette a "à valider"
                 $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_IN_VALIDATION);
+                // ajouter chaque ingrédients un par un
                 foreach ($recipe->getRecipeIngredients() as $recipeIngredient){
                     $recipeIngredient->setRecipe($recipe);
                 }

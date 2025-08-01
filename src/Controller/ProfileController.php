@@ -29,6 +29,7 @@ final class ProfileController extends AbstractController
         /** @var User $user */
         $user = $this->getUser();
         if($user) {
+            // pour affichage différent entre le formulaire d'ajout et celui d'edition
             $isAdd = true;
             return $recipeServices->handleRecipeFormAction($flow, new Recipe(), $user, $fileUploaderService, $isAdd);
         } else {

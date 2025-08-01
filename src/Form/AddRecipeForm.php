@@ -30,7 +30,9 @@ class AddRecipeForm extends AbstractType
             ])
             ->add('level', ChoiceType::class, [
                 'label' => 'Difficulté',
+                // transform le select de par en input radio
                 'expanded' => true,
+                // utilise les clés de translation
                 'choices' => [
                     'recipe.level.1' => 1,
                     'recipe.level.2' => 2,
@@ -58,6 +60,7 @@ class AddRecipeForm extends AbstractType
                 'attr' => [
                     'class' => 'input'
                 ],
+                // dis à symfony de ne pas gérer ce champs
                 'mapped' => false,
                 'constraints' => [
                     new NotBlank([
