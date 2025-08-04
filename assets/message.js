@@ -3,7 +3,7 @@
 function initCollectionForm() {
     const buttonsAddForm = document.querySelectorAll('[data-btn-selector]');
     buttonsAddForm.forEach((btnElt) => {
-        // ajout un ecouteur d'évenement à chaque bouton qui à un attribut [data-btn-selector]
+        // ajoute un écouteur d'évenement à chaque bouton qui a un attribut [data-btn-selector]
         btnElt.addEventListener('click', () => {
 
             // récupère la valeur de l'attribut data-btn-selector du bouton
@@ -43,9 +43,9 @@ function initCollectionForm() {
     });
 }
 
-// gere les champs déjà existant en base
+// gere les champs déjà existants en base
 function initButtonCollectionForm() {
-    // récupère tous les élément ayant l'attribut [data-list-selector]
+    // récupère tous les éléments ayant l'attribut [data-list-selector]
     const collectionForm = document.querySelectorAll('[data-list-selector]');
     if (collectionForm) {
         for (const form of collectionForm) {
@@ -67,7 +67,7 @@ function initButtonCollectionForm() {
                 const icon = createIcon(i);
                 // ajouter l'HTML de l'enfant dans la div
                 divForm.innerHTML = childSaved;
-                // ajouter la div sous l'icon supprimer
+                // ajouter la div sous l'icon "supprimer"
                 divForm.insertAdjacentElement('afterbegin', icon);
                 // incrémenter le compteur pour passer à l'enfant suivant
                 i++;

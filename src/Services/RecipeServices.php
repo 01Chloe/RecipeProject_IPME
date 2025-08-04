@@ -54,7 +54,7 @@ readonly class RecipeServices
                 /** @var UploadedFile|null $file */
                 // recuprère le chemin de l'image
                 $file = $form->get('imagePath')->getData();
-                // Stock le chemin de l'image en session
+                // stock le chemin de l'image en session
                 if ($file !== null) {
                     $session->set(
                         'filename_recipe',
@@ -81,7 +81,7 @@ readonly class RecipeServices
                     // sinon changer la date de modification
                     $recipe->setUpdatedAt(new \DateTime());
                 }
-                // mettre le status de la recette a "à valider"
+                // changer le status de la recette par "en cours de validation"
                 $recipe->setStatus(RecipeStatusEnum::RECIPE_STATUS_IN_VALIDATION);
                 // ajouter chaque ingrédients un par un
                 foreach ($recipe->getRecipeIngredients() as $recipeIngredient){
